@@ -11,7 +11,7 @@ You must have an [Microsoft Azure account](https://azure.microsoft.com/).
 
 The code for the samples is contained in individual folders on this repository. You can see the list:
 
-**Compute - Amazon EC2:**
+**Compute - Azure VM:**
 * [azurevminstances](/azurevminstances) - Azure Virtual Machine instances: Example of how to handle Azure Virtual Machine instances.
 
 
