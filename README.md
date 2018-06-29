@@ -7,7 +7,7 @@ This repo contains Java code examples on the Microsoft Azure platform.
 
 ## Quick start
 
-You must have an [Microsoft Azure account](https://azure.microsoft.com/).
+You must have an [Microsoft Azure subscription](https://azure.microsoft.com/).
 
 The code for the samples is contained in individual folders on this repository. You can see the list:
 
