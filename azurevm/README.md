@@ -32,21 +32,21 @@ This code was written for Java 1.8 and Azure Management Libraries for Java.
 
   You can generate this file using Azure CLI 2.0 or using the Azure cloud shell.
 
-  Make sure you select your subscription by:
+  * Make sure you select your subscription by:
 
-  ```
-  az account set --subscription <name or id>
-  ```
+    ```
+    az account set --subscription <name or id>
+    ```
 
-  and you have the privileges to create service principals.
+    and you have the privileges to create service principals.
 
-  Execute the following command for creating the authentication file:
+  * Execute the following command for creating the authentication file:
   
-  ```
-  az ad sp create-for-rbac --sdk-auth > my.azureauth
-  ```
+    ```
+    az ad sp create-for-rbac --sdk-auth > my.azureauth
+    ```
   
-  Set the AZURE_AUTH_LOCATION environment variable in your Operating System with the path of your authentication file.
+  * Set the AZURE_AUTH_LOCATION environment variable in your Operating System with the path of your authentication file.
 
 * Run the code:
 
