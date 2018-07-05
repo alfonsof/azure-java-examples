@@ -51,7 +51,7 @@ This code was written for Java 1.8 and Azure Management Libraries for Java.
 * Run the code:
 
   ```
-  java -jar azurevminstance.jar
+  java -jar azurevm.jar
   ```
 
   You can select an option in the menu in order to run every command:
