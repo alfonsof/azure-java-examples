@@ -11,8 +11,8 @@ You must have an [Microsoft Azure subscription](https://azure.microsoft.com/).
 
 The code for the samples is contained in individual folders on this repository. You can see the list:
 
-**Compute - Azure VM:**
-* [azurevminstances](/azurevminstances) - Azure Virtual Machine instances: Example of how to handle Azure Virtual Machine instances.
+**Compute - Azure Virtual Machines:**
+* [azurevm](/azurevm) - Azure Virtual Machines: Example of how to handle Azure Virtual Machines.
 
 
 
