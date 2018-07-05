@@ -1,4 +1,4 @@
-# Java examples on Azure (Microsoft)
+# Java examples on Microsoft Azure
 
 This repo contains Java code examples on the Microsoft Azure platform.
 
