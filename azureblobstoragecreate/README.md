@@ -101,8 +101,8 @@ This code was written for Java 1.8 and Azure Management Libraries for Java.
   ```
 
   You only need to edit the file "app.properties" and change the values of:
-    * "account-name" by the account name of your storage account.
-    * "account-key"  by the account key of your storage account.
+    * "<account-name>" by the account name of your storage account.
+    * "<account-key>"  by the account key of your storage account.
   
   You can find your storage account's connection strings in the Azure portal.
   
@@ -117,8 +117,8 @@ This code was written for Java 1.8 and Azure Management Libraries for Java.
 * Run the code:
 
   You must to edit the file "app.properties" and change the values of:
-    * "account-name" by the account name of your storage account.
-    * "account-key"  by the account key of your storage account.
+    * "<account-name>" by the account name of your storage account.
+    * "<account-key>"  by the account key of your storage account.
 
   You must provide 1 parameter:
 
