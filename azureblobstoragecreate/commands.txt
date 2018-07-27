@@ -11,5 +11,5 @@ Working with IntelliJ this functionality does not work. So, we remove the files 
 
 $ zip -d out/artifacts/azurevm_jar/azurevm_jar.jar META-INF/*.RSA META-INF/*.DSA META-INF/*.SF
 
-$ 7z d -tzip out/artifacts/azurevm_jar/azurevm_jar.jar META-INF/*.RSA META-INF/*.DSA META-INF/*.SF
+$ 7z d -tzip out/artifacts/azureblobstoragecreate_jar/azureblobstoragecreate.jar META-INF/*.RSA META-INF/*.DSA META-INF/*.SF
 
