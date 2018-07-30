@@ -9,7 +9,7 @@ We can exclude these files with "maven-shade-plugin".
 
 Working with IntelliJ this functionality does not work. So, we remove the files with one of these commands after thejar file is created:
 
-$ zip -d out/artifacts/azurevm_jar/azurevm_jar.jar META-INF/*.RSA META-INF/*.DSA META-INF/*.SF
+$ zip -d out/artifacts/azurevm_jar/azurevm.jar META-INF/*.RSA META-INF/*.DSA META-INF/*.SF
 
 $ 7z d -tzip out/artifacts/azurevm_jar/azurevm.jar META-INF/*.RSA META-INF/*.DSA META-INF/*.SF
 
