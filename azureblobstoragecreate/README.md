@@ -127,12 +127,12 @@ This code was written for Java 1.8 and Azure SDKs for Java.
 
   You must to edit the file "app.properties" and change the values of:
   
-    * \<ACCOUNT_NAME\> by the account name of your storage account.
-    * \<ACCOUNT_KEY\> by the account key of your storage account.
+    * `<ACCOUNT_NAME>` by the account name of your storage account.
+    * `<ACCOUNT_KEY>` by the account key of your storage account.
 
   You must provide 1 parameter:
 
-    * \<CONTAINER_NAME\> = Name of the container
+    * `<CONTAINER_NAME>` = Name of the container
 
   Run application:
   
