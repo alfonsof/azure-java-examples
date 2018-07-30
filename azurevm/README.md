@@ -68,5 +68,5 @@ This code was written for Java 1.8 and Azure Management Libraries for Java.
 
 * Test the application.
 
-  You should see the new instance and modification of states with the Azure console.
+  You should see the new virtual machine and modification of states with the Azure console.
   
