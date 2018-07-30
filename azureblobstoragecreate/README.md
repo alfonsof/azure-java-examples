@@ -93,7 +93,7 @@ This code was written for Java 1.8 and Azure SDKs for Java.
   You can find your storage account's connection strings in the Azure portal:
   
     * Navigate to "Storage Accounts".
-    * Select your account.
+    * Select your storage account.
     * You can see your connection strings and get your account name and account key.
 
       ```
@@ -112,8 +112,8 @@ This code was written for Java 1.8 and Azure SDKs for Java.
   ```
 
   You only need to edit the file "app.properties" and change the values of:
-    <account-name> by the account name of your storage account.
-    <account-key>  by the account key of your storage account.
+    <account_name> by the account name of your storage account.
+    <account_key>  by the account key of your storage account.
   
   The application creates a connection string for your Azure storage account using the following format:
   
@@ -124,8 +124,8 @@ This code was written for Java 1.8 and Azure SDKs for Java.
 * Run the code:
 
   You must to edit the file "app.properties" and change the values of:
-    <account-name> by the account name of your storage account.
-    <"account-key> by the account key of your storage account.
+    <account_name> by the account name of your storage account.
+    <account_key> by the account key of your storage account.
 
   You must provide 1 parameter:
 
