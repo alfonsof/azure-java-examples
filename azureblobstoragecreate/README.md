@@ -34,21 +34,21 @@ This code was written for Java 1.8 and Azure SDKs for Java.
 
   You can generate this file using Azure CLI 2.0 or using the Azure cloud shell.
 
-  * Make sure you select your subscription by:
+    * Make sure you select your subscription by:
 
-    ```
-    az account set --subscription <name or id>
-    ```
+      ```
+      az account set --subscription <name or id>
+      ```
 
-    and you have the privileges to create service principals.
+      and you have the privileges to create service principals.
 
-  * Execute the following command for creating the authentication file:
-  
-    ```
-    az ad sp create-for-rbac --sdk-auth > my.azureauth
-    ```
-  
-  * Set the AZURE_AUTH_LOCATION environment variable in your Operating System with the path of your authentication file.
+    * Execute the following command for creating the authentication file:
+    
+      ```
+      az ad sp create-for-rbac --sdk-auth > my.azureauth
+      ```
+    
+    * Set the AZURE_AUTH_LOCATION environment variable in your Operating System with the path of your authentication file.
 
 * Configure your storage account.
 
@@ -56,15 +56,16 @@ This code was written for Java 1.8 and Azure SDKs for Java.
   
   There are two types of storage accounts:
   
-  * A general-purpose storage account gives you access to Azure Storage services such as Tables, Queues, Files, Blobs and Azure virtual machine disks under a single account.
+    * A general-purpose storage account gives you access to Azure Storage services such as Tables, Queues, Files, Blobs and Azure virtual machine disks under a single account.
 
-  * A Blob storage account is a specialized storage account for storing your unstructured data as blobs (objects) in Azure Storage.
-    Blob storage accounts are similar to a existing general-purpose storage accounts and share all the great durability, availability,
-    scalability, and performance features that you use today including 100% API consistency for block blobs and append blobs.
+    * A Blob storage account is a specialized storage account for storing your unstructured data as blobs (objects) in Azure Storage.
+      Blob storage accounts are similar to a existing general-purpose storage accounts and share all the great durability, availability,
+      scalability, and performance features that you use today including 100% API consistency for block blobs and append blobs.
 
   For applications requiring only block or append blob storage, it is recommend using Blob storage accounts.
 
   Blob storage accounts expose the Access Tier attribute which can be specified during account creation and modified later as needed.
+
   There are two types of access tiers that can be specified based on your data access pattern:
     * A Hot access tier which indicates that the objects in the storage account will be more frequently accessed.
       This allows you to store data at a lower access cost.
@@ -113,9 +114,8 @@ This code was written for Java 1.8 and Azure SDKs for Java.
 
   You only need to edit the file "app.properties" and change the values of:
   
-  * \<ACCOUNT_NAME\> by the account name of your storage account.
-    
-  * \<ACCOUNT_KEY\> by the account key of your storage account.
+    * \<ACCOUNT_NAME\> by the account name of your storage account.
+    * \<ACCOUNT_KEY\> by the account key of your storage account.
   
   The application creates a connection string for your Azure storage account using the following format:
   
@@ -127,13 +127,12 @@ This code was written for Java 1.8 and Azure SDKs for Java.
 
   You must to edit the file "app.properties" and change the values of:
   
-    <ACCOUNT_NAME> by the account name of your storage account.
-    
-    <ACCOUNT_KEY> by the account key of your storage account.
+    * \<ACCOUNT_NAME\> by the account name of your storage account.
+    * \<ACCOUNT_KEY\> by the account key of your storage account.
 
   You must provide 1 parameter:
 
-  <CONTAINER_NAME> = Name of the container
+    * \<CONTAINER_NAME\> = Name of the container
 
   ```
   java -jar azureblobstoragecreate.jar container-example
