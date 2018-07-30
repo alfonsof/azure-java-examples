@@ -96,7 +96,6 @@ This code was written for Java 1.8 and Azure SDKs for Java.
     1. Navigate to "Storage Accounts".
     2. Select your storage account.
     3. You can see your connection strings and get your account name and account key.
-
       ```
       DefaultEndpointsProtocol=https;AccountName=ACCOUNT_NAME;AccountKey=ACCOUNT_KEY;EndpointSuffix=core.windows.net
       ```
