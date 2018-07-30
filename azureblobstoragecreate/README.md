@@ -97,7 +97,7 @@ This code was written for Java 1.8 and Azure SDKs for Java.
     * You can see your connection strings and get your account name and account key.
 
       ```
-      DefaultEndpointsProtocol=https;AccountName=account-name;AccountKey=account-key;EndpointSuffix=core.windows.net
+      DefaultEndpointsProtocol=https;AccountName=account_name;AccountKey=account_key;EndpointSuffix=core.windows.net
       ```
   
   Although Azure Storage supports both HTTP and HTTPS in a connection string, HTTPS is highly recommended.
@@ -106,25 +106,29 @@ This code was written for Java 1.8 and Azure SDKs for Java.
   
   ```
   DefaultEndpointsProtocol=https
-  AccountName=<account-name>
-  AccountKey=<account-key>
+  AccountName=<account_name>
+  AccountKey=<account_key>
   EndpointSuffix=core.windows.net
   ```
 
   You only need to edit the file "app.properties" and change the values of:
+  
     <account_name> by the account name of your storage account.
+    
     <account_key>  by the account key of your storage account.
   
   The application creates a connection string for your Azure storage account using the following format:
   
   ```
-  DefaultEndpointsProtocol=https;AccountName=account-name;AccountKey=account-key;EndpointSuffix=core.windows.net
+  DefaultEndpointsProtocol=https;AccountName=account_name;AccountKey=account_key;EndpointSuffix=core.windows.net
   ```
 
 * Run the code:
 
   You must to edit the file "app.properties" and change the values of:
+  
     <account_name> by the account name of your storage account.
+    
     <account_key> by the account key of your storage account.
 
   You must provide 1 parameter:
