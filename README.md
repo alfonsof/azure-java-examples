@@ -14,9 +14,11 @@ The code for the samples is contained in individual folders on this repository. 
 **Compute - Azure Virtual Machines:**
 * [azurevm](/azurevm) - Azure Virtual Machines: Example of how to handle Azure Virtual Machines.
 
-**Storage - Azure Storage:**
-* [azureblobstoragecreate](/azureblobstoragecreate) - Azure Blob Storage Create: Example of how to handle Azure Blob Storage and
+**Storage - Azure Blob Storage:**
+* [azureblobstoragecreate](/azureblobstoragecreate) - Azure Blob Storage Create Container: Example of how to handle Azure Blob Storage and
 create a new Blob Storage container in Azure.
+* [azureblobstoragedelete](/azureblobstoragedelete) - Azure Blob Storage Delete Container: Example of how to handle Azure Blob Storage and
+delete a Blob Storage container in Azure.
 
 For instructions on running the code, please consult the README in each folder. 
 
