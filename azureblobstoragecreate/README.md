@@ -103,7 +103,7 @@ This code was written for Java 1.8 and Azure SDKs for Java.
   
   Although Azure Storage supports both HTTP and HTTPS in a connection string, HTTPS is highly recommended.
 
-  We store the connection string in a properties file (app.properties). The file content is:
+  We store the connection string in a properties file (`app.properties`). The file content is:
   
   ```
   DefaultEndpointsProtocol=https
@@ -112,7 +112,7 @@ This code was written for Java 1.8 and Azure SDKs for Java.
   EndpointSuffix=core.windows.net
   ```
 
-  You only need to edit the file "app.properties" and change the values of:
+  You only need to edit the file `app.properties` and change the values of:
   
     * `<ACCOUNT_NAME>` by the account name of your storage account.
     * `<ACCOUNT_KEY>` by the account key of your storage account.
