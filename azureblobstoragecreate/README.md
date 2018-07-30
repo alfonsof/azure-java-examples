@@ -1,4 +1,4 @@
-# Azure Blob Storage Create Java example
+# Azure Blob Storage Create Container Java example
 
 This folder contains a Java application example that create a Blob storage container on Microsoft Azure.
 
