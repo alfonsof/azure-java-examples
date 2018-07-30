@@ -75,15 +75,15 @@ This code was written for Java 1.8 and Azure SDKs for Java.
   An storage account can content containers and every container can content blobs.
   
   ```
-  Storage Account |- Container1 |- Blob1
-                  |             |
-                  |             |- Blob2
+  Storage Account |- Container_1 |- Blob_1
+                  |              |
+                  |              |- Blob_2
                   |            
-                  |- Container2 |- Blob1
-                                |
-                                |- Blob2
-                                |
-                                |- Blob3
+                  |- Container_2 |- Blob_1
+                                 |
+                                 |- Blob_2
+                                 |
+                                 |- Blob_3
   ```
   
   Create a storage account:
