@@ -14,4 +14,3 @@ So, we remove the files with one of these commands after the jar file is created
 $ zip -d out/artifacts/azureblobstoragelistall_jar/azureblobstoragelistall.jar META-INF/*.RSA META-INF/*.DSA META-INF/*.SF
 
 $ 7z d -tzip out/artifacts/azureblobstoragelistall_jar/azureblobstoragelistall.jar META-INF/*.RSA META-INF/*.DSA META-INF/*.SF
-
