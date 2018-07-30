@@ -136,7 +136,7 @@ This code was written for Java 1.8 and Azure SDKs for Java.
   DefaultEndpointsProtocol=https;AccountName=ACCOUNT_NAME;AccountKey=ACCOUNT_KEY;EndpointSuffix=core.windows.net
   ```
 
-* Run the code:
+* Run the code.
 
   You must edit the file `app.properties` and change the values of:
   
@@ -153,6 +153,6 @@ This code was written for Java 1.8 and Azure SDKs for Java.
   java -jar azureblobstoragecreate.jar container-example
   ```
 
-* Test the application:
+* Test the application.
 
   You should see the new Blob Storage container created in the Azure storage account.
