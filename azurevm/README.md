@@ -63,4 +63,8 @@ This code was written for Java 1.8 and Azure Management Libraries for Java.
   * 5 = Stop Virtual Machine
   * 6 = Restart Virtual Machine
   * 7 = Delete/Deallocate Virtual Machine
+
+* Test the application.
+
+  You should see the new instance and modification of states with the Azure console.
   
