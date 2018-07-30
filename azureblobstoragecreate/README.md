@@ -56,33 +56,33 @@ This code was written for Java 1.8 and Azure SDKs for Java.
   
   There are two types of storage accounts:
   
-    * A general-purpose storage account gives you access to Azure Storage services such as Tables, Queues, Files, Blobs and Azure virtual machine disks under a single account.
-  
-    * A Blob storage account is a specialized storage account for storing your unstructured data as blobs (objects) in Azure Storage.
-      Blob storage accounts are similar to a existing general-purpose storage accounts and share all the great durability, availability,
-      scalability, and performance features that you use today including 100% API consistency for block blobs and append blobs.
+  * A general-purpose storage account gives you access to Azure Storage services such as Tables, Queues, Files, Blobs and Azure virtual machine disks under a single account.
 
-    For applications requiring only block or append blob storage, it is recommend using Blob storage accounts.
+  * A Blob storage account is a specialized storage account for storing your unstructured data as blobs (objects) in Azure Storage.
+    Blob storage accounts are similar to a existing general-purpose storage accounts and share all the great durability, availability,
+    scalability, and performance features that you use today including 100% API consistency for block blobs and append blobs.
 
-    Blob storage accounts expose the Access Tier attribute which can be specified during account creation and modified later as needed.
-    There are two types of access tiers that can be specified based on your data access pattern:
-      * A Hot access tier which indicates that the objects in the storage account will be more frequently accessed.
-        This allows you to store data at a lower access cost.
-      * A Cool access tier which indicates that the objects in the storage account will be less frequently accessed.
-        This allows you to store data at a lower data storage cost.
+  For applications requiring only block or append blob storage, it is recommend using Blob storage accounts.
+
+  Blob storage accounts expose the Access Tier attribute which can be specified during account creation and modified later as needed.
+  There are two types of access tiers that can be specified based on your data access pattern:
+    * A Hot access tier which indicates that the objects in the storage account will be more frequently accessed.
+      This allows you to store data at a lower access cost.
+    * A Cool access tier which indicates that the objects in the storage account will be less frequently accessed.
+      This allows you to store data at a lower data storage cost.
   
   Create a storage account:
   
-    * Sign in to the Azure portal.
-    * Select the "Storage accounts" option. On the Storage Accounts window that appears, choose Add.
-    * Enter a name for your storage account.
-    * Specify the deployment model to be used: Resource Manager or Classic. Select Resource Manager deployment model.
-    * Select the type of storage account: General purpose or Blob storage. Select General purpose.
-    * Select the geographic location for your storage account. 
-    * Select the replication option for the storage account: LRS, GRS, RA-GRS, or ZRS. Set Replication to Locally Redundant storage (LRS).
-    * Select the subscription in which you want to create the new storage account.
-    * Specify a new resource group or select an existing resource group. 
-    * Click Create to create the storage account.
+    1. Sign in to the Azure portal.
+    2. Select the "Storage accounts" option. On the Storage Accounts window that appears, choose Add.
+    3. Enter a name for your storage account.
+    4. Specify the deployment model to be used: Resource Manager or Classic. Select Resource Manager deployment model.
+    5. Select the type of storage account: General purpose or Blob storage. Select General purpose.
+    6. Select the geographic location for your storage account. 
+    7. Select the replication option for the storage account: LRS, GRS, RA-GRS, or ZRS. Set Replication to Locally Redundant storage (LRS).
+    8. Select the subscription in which you want to create the new storage account.
+    9. Specify a new resource group or select an existing resource group. 
+    10. Click Create to create the storage account.
     
 * Configure your Azure Storage connection string.
 
@@ -92,9 +92,9 @@ This code was written for Java 1.8 and Azure SDKs for Java.
 
   You can find your storage account's connection strings in the Azure portal:
   
-    * Navigate to "Storage Accounts".
-    * Select your storage account.
-    * You can see your connection strings and get your account name and account key.
+    1. Navigate to "Storage Accounts".
+    2. Select your storage account.
+    3. You can see your connection strings and get your account name and account key.
 
       ```
       DefaultEndpointsProtocol=https;AccountName=ACCOUNT_NAME;AccountKey=ACCOUNT_KEY;EndpointSuffix=core.windows.net
@@ -113,9 +113,9 @@ This code was written for Java 1.8 and Azure SDKs for Java.
 
   You only need to edit the file "app.properties" and change the values of:
   
-    <ACCOUNT_NAME> by the account name of your storage account.
+  * \<ACCOUNT_NAME\> by the account name of your storage account.
     
-    <ACCOUNT_KEY>  by the account key of your storage account.
+  * \<ACCOUNT_KEY\> by the account key of your storage account.
   
   The application creates a connection string for your Azure storage account using the following format:
   
