@@ -54,15 +54,18 @@ This code was written for Java 1.8 and Azure SDKs for Java.
 
   An Azure storage account provides a unique namespace to store and access your Azure Storage data objects.
   
-  An storage account contents containers and every container can content blobs.
+  An storage account can content containers and every container can content blobs.
   
   ```
-  Storage Account - Container1 - Blob1
-                               - Blob2
-                               
-                  - Container2 - Blob1
-                               - Blob2
-                               - Blob3
+  Storage Account |- Container1 |- Blob1
+                  |             |
+                  |             |- Blob2
+                  |            
+                  |- Container2 |- Blob1
+                                |
+                                |- Blob2
+                                |
+                                |- Blob3
   ```
   
   There are two types of storage accounts:
