@@ -2,7 +2,7 @@
 
 This folder contains a Java application example that create a Blob storage container on Microsoft Azure.
 
-Create a new Blob storage container for Azure.
+Create a new Blob Storage container in an Azure storage account.
 
 
 
@@ -155,4 +155,4 @@ This code was written for Java 1.8 and Azure SDKs for Java.
 
 * Test the application.
 
-  You should see the new Blob Storage container created in the Azure storage account.
+  You should see the new Blob Storage container created in an Azure storage account.

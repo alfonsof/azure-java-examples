@@ -2,7 +2,7 @@
 
 This folder contains a Java application example that delete a Blob storage container on Microsoft Azure.
 
-Delete a Blob storage container for Azure.
+Delete a Blob Storage container in an Azure storage account.
 
 
 
@@ -155,4 +155,4 @@ This code was written for Java 1.8 and Azure SDKs for Java.
 
 * Test the application.
 
-  You should not see the Blob Storage container deleted in the Azure storage account.
+  You should not see the Blob Storage container deleted in an Azure storage account.

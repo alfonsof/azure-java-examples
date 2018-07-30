@@ -151,4 +151,4 @@ This code was written for Java 1.8 and Azure SDKs for Java.
 
 * Test the application.
 
-  You should see the list of blobs in all Blob Storage containers in the Azure storage account.
+  You should see the list of blobs in all Blob Storage containers in an Azure storage account.
