@@ -16,11 +16,13 @@ The code for the samples is contained in individual folders on this repository. 
 
 **Storage - Azure Blob Storage:**
 * [azureblobstoragecreate](/azureblobstoragecreate) - Azure Blob Storage Create Container: Example of how to handle Azure Blob Storage and
-create a new Blob Storage container in Azure.
+create a new Blob Storage container in an Azure storage account.
 * [azureblobstoragedelete](/azureblobstoragedelete) - Azure Blob Storage Delete Container: Example of how to handle Azure Blob Storage and
-delete a Blob Storage container in Azure.
+delete a Blob Storage container in an Azure storage account.
 * [azureblobstoragelist](/azureblobstoragelist) - Azure Blob Storage List Container: Example of how to handle Azure Blob Storage and
-list the blobs in a Blob Storage container in Azure.
+list the blobs in a Blob Storage container in an Azure storage account.
+* [azureblobstoragelistall](/azureblobstoragelistall) - Azure Blob Storage List All Containers: Example of how to handle Azure Blob Storage and
+list the blobs in all Blob Storage containers in an Azure storage account.
 
 For instructions on running the code, please consult the README in each folder. 
 
