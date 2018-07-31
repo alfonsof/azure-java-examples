@@ -6,9 +6,9 @@ Create a new Blob Storage container in an Azure storage account.
 
 ## Requirements
 
-You must have a [Microsoft Azure subscription](https://azure.microsoft.com/).
+* You must have a [Microsoft Azure subscription](https://azure.microsoft.com/).
 
-You must have an Azure storage account.
+* You must have an Azure storage account.
 
 This code was written for Java 1.8 and Azure SDKs for Java.
 
