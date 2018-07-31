@@ -6,7 +6,7 @@
 
     <groupId>com.alfonsof.azureexamples</groupId>
     <artifactId>azure-blob-storage-list</artifactId>
-    <version>0.1.0</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <properties>
