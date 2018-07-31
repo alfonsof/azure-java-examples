@@ -1,6 +1,6 @@
 # Azure Blob Storage List Container Java example
 
-This folder contains a Java application example that list a Blob storage container on Microsoft Azure.
+This folder contains a Java application example that handles Blob storage on Microsoft Azure.
 
 List the blobs in a Blob Storage container in an Azure storage account.
 
