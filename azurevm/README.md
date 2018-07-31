@@ -2,17 +2,11 @@
 
 This folder contains a Java application example that handles Virtual Machines on Microsoft Azure.
 
-
-
-
 ## Requirements
 
 You must have a [Microsoft Azure subscription](https://azure.microsoft.com/).
 
 This code was written for Java 1.8 and Azure Management Libraries for Java.
-
-
-
 
 ## Using the code
 
@@ -25,8 +19,8 @@ This code was written for Java 1.8 and Azure Management Libraries for Java.
   The credentials are taken from AZURE_AUTH_LOCATION environment variable.
 
   For example:
-  
-  ```
+
+  ```bash
   AZURE_AUTH_LOCATION = /path/to/my.azureauth
   ```
 
@@ -34,7 +28,7 @@ This code was written for Java 1.8 and Azure Management Libraries for Java.
 
   * Make sure you select your subscription by:
 
-    ```
+    ```bash
     az account set --subscription <name or id>
     ```
 
@@ -42,7 +36,7 @@ This code was written for Java 1.8 and Azure Management Libraries for Java.
 
   * Execute the following command for creating the authentication file:
   
-    ```
+    ```bash
     az ad sp create-for-rbac --sdk-auth > my.azureauth
     ```
   
@@ -51,8 +45,8 @@ This code was written for Java 1.8 and Azure Management Libraries for Java.
 * Run the code.
 
   Run application:
-  
-  ```
+
+  ```bash
   java -jar azurevm.jar
   ```
 
