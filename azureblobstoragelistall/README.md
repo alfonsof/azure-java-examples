@@ -6,7 +6,7 @@ List the blobs in all Blob Storage containers in an Azure storage account.
 
 ## Requirements
 
-* You must have a [Microsoft Azure subscription](https://azure.microsoft.com/).
+* You must have a [Microsoft Azure](https://azure.microsoft.com/) subscription.
 
 * You must have an Azure storage account.
 

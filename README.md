@@ -1,10 +1,10 @@
 # Java examples on Microsoft Azure
 
-This repo contains Java code examples on the Microsoft Azure platform.
+This repo contains Java code examples on Microsoft Azure.
 
 ## Quick start
 
-You must have a [Microsoft Azure subscription](https://azure.microsoft.com/).
+You must have a [Microsoft Azure](https://azure.microsoft.com/) subscription.
 
 You must have an Azure storage account for the Azure Blob Storage examples.
 

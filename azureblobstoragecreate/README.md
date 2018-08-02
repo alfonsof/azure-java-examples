@@ -6,7 +6,7 @@ Create a new Blob Storage container in an Azure storage account.
 
 ## Requirements
 
-* You must have a [Microsoft Azure subscription](https://azure.microsoft.com/).
+* You must have a [Microsoft Azure](https://azure.microsoft.com/) subscription.
 
 * You must have an Azure storage account.
 
