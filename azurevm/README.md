@@ -5,7 +5,6 @@ This folder contains a Java application example that handles Virtual Machines on
 ## Requirements
 
 * You must have a [Microsoft Azure](https://azure.microsoft.com/) subscription.
-
 * The code was written for Java 1.8 and Azure Management Libraries for Java.
 
 ## Using the code
