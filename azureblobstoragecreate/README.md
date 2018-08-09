@@ -42,7 +42,7 @@ Create a new Blob Storage container in an Azure storage account.
     az ad sp create-for-rbac --sdk-auth > my.azureauth
     ```
   
-  * Set the AZURE_AUTH_LOCATION environment variable in your Operating System with the path of your authentication file.
+  * Set the `AZURE_AUTH_LOCATION` environment variable in your Operating System with the path of your authentication file.
 
 * Configure your storage account.
 
