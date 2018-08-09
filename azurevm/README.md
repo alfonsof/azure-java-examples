@@ -15,7 +15,7 @@ This folder contains a Java application example that handles Virtual Machines on
 
   The application uses an authentication file for authenticating.
 
-  The credentials are taken from AZURE_AUTH_LOCATION environment variable.
+  The credentials are taken from `AZURE_AUTH_LOCATION` environment variable.
 
   For example:
 

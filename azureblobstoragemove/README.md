@@ -18,7 +18,7 @@ Move a file from a Blob Storage container to another Blob Storage container.
 
   The application uses an authentication file for authenticating.
 
-  The credentials are taken from AZURE_AUTH_LOCATION environment variable.
+  The credentials are taken from `AZURE_AUTH_LOCATION` environment variable.
 
   For example:
 

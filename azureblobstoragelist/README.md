@@ -18,7 +18,7 @@ List the blobs in a Blob Storage container in an Azure storage account.
 
   The application uses an authentication file for authenticating.
 
-  The credentials are taken from AZURE_AUTH_LOCATION environment variable.
+  The credentials are taken from `AZURE_AUTH_LOCATION` environment variable.
 
   For example:
 
