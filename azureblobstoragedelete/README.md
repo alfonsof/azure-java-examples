@@ -14,6 +14,8 @@ Delete a Blob Storage container in an Azure storage account.
 
 * Configure your Azure access.
 
+    You must create an Azure AD service principal in order to enable application to connect resources into Azure. The service principal grants your application to manage resources in your Azure subscription.
+
   The Azure SDKs Libraries for Java allow you to use several authentication schemes.
 
   The application uses an authentication file for authenticating.
@@ -26,7 +28,7 @@ Delete a Blob Storage container in an Azure storage account.
   AZURE_AUTH_LOCATION = /path/to/my.azureauth
   ```
 
-  You can generate this file using Azure CLI 2.0 or using the Azure cloud shell.
+  You can create a service principal and generate this file using Azure CLI 2.0 or using the Azure cloud shell.
 
   * Make sure you select your subscription by:
 
@@ -36,13 +38,17 @@ Delete a Blob Storage container in an Azure storage account.
 
     and you have the privileges to create service principals.
 
-  * Execute the following command for creating the authentication file:
+  * Execute the following command for creating the service principal and the authentication file:
   
     ```bash
     az ad sp create-for-rbac --sdk-auth > my.azureauth
     ```
   
   * Set the `AZURE_AUTH_LOCATION` environment variable in your Operating System with the path of your authentication file.
+
+    ```bash
+    AZURE_AUTH_LOCATION = /path/to/my.azureauth
+    ```
 
 * Configure your storage account.
 
