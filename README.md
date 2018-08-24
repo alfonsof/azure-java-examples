@@ -2,7 +2,7 @@
 
 This repo contains Java code examples on Microsoft Azure.
 
-These examples show how to use Java 1.8, Google Cloud Client Library for Java and Azure SDKs for Java in order to manage services on Microsoft Azure.
+These examples show how to use Java 1.8, Azure Management Libraries for Java and Azure SDKs for Java in order to manage services on Microsoft Azure.
 
 Azure Management Libraries for Java and Azure SDKs for Java allow Java developers to write software that makes use of Azure services like Virtual Machines and Blob storage.
 
