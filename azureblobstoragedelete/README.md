@@ -75,15 +75,15 @@ Delete a Blob Storage container in an Azure storage account.
   An storage account can content containers and every container can content blobs.
 
   ```bash
-  Storage Account -|- Container_1 -|- Blob_1
-                   |               |
-                   |               |- Blob_2
-                   |
-                   |- Container_2 -|- Blob_1
-                                   |
-                                   |- Blob_2
-                                   |
-                                   |- Blob_3
+  Storage Account
+              ├── Container_1/
+              │   ├── Blob_1_1/
+              │   └── Blob_1_2/
+              │
+              └── Container_2/
+                  ├── Blob_2_1/
+                  ├── Blob_2_2/
+                  └── Blob_2_3/
   ```
 
   Create a storage account:
