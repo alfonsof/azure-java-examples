@@ -1,4 +1,4 @@
-# Azure Blob Storage Delete Container Java example
+# Azure Blob Storage Delete Java example
 
 This folder contains a Java application example that handles Blob storage on Microsoft Azure.
 
