@@ -17,26 +17,9 @@ import com.microsoft.azure.storage.blob.ListBlobItem;
 
 public class BlobStorageListAll {
     public static void main(String[] args) {
-        // The connection string is taken from app.properties file
-        Properties prop = new Properties();
+        // Load Configuration from a file and get the Storage Connection String
+        String storageConnectionString = loadConfiguration();
 
-        try {
-            InputStream is = ClassLoader.getSystemResourceAsStream("app.properties");
-            prop.load(is);
-        } catch (IOException e) {
-            System.out.println(e.toString());
-        }
-        String defaultEndpointsProtocolStr = prop.getProperty("DefaultEndpointsProtocol");
-        String accountNameStr = prop.getProperty("AccountName");
-        String accountKeyStr = prop.getProperty("AccountKey");
-        String endpointSuffixStr = prop.getProperty("EndpointSuffix");
-
-        // Define the connection-string with your values
-        String storageConnectionString =
-                "DefaultEndpointsProtocol=" + defaultEndpointsProtocolStr + ";" +
-                        "AccountName=" + accountNameStr + ";" +
-                        "AccountKey=" + accountKeyStr + ";" +
-                        "EndpointSuffix=" + endpointSuffixStr;
         try
         {
             // Retrieve storage account from connection-string.
@@ -45,11 +28,11 @@ public class BlobStorageListAll {
             // Create the blob client.
             CloudBlobClient blobClient = storageAccount.createCloudBlobClient();
 
-            System.out.printf("List of containers:\n");
+            System.out.printf("List of Blob containers:\n");
 
             // Enumerate all containers and list all blobs
             for (CloudBlobContainer container : blobClient.listContainers()) {
-                System.out.printf("- List of blobs in container %s:\n", container.getName());
+                System.out.printf("- List of blobs in Blob container %s:\n", container.getName());
                 // List the blobs in the container.
                 for (ListBlobItem blobItem : container.listBlobs()) {
                     System.out.println("  - Blob URI : " + blobItem.getUri());
@@ -61,5 +44,31 @@ public class BlobStorageListAll {
             // Output the stack trace.
             e.printStackTrace();
         }
+    }
+
+    private static String loadConfiguration() {
+
+        // The connection string is taken from app.properties file
+        Properties prop = new Properties();
+
+        try {
+            InputStream is = ClassLoader.getSystemResourceAsStream("app.properties");
+            prop.load(is);
+        } catch(IOException e) {
+            System.out.println(e.toString());
+        }
+        String defaultEndpointsProtocolStr = prop.getProperty("DefaultEndpointsProtocol");
+        String accountNameStr = prop.getProperty("AccountName");
+        String accountKeyStr = prop.getProperty("AccountKey");
+        String endpointSuffixStr = prop.getProperty("EndpointSuffix");
+
+        // Define the connection-string with your values
+        String storageConnectionString =
+                "DefaultEndpointsProtocol=" + defaultEndpointsProtocolStr + ";" +
+                        "AccountName=" + accountNameStr + ";" +
+                        "AccountKey="+ accountKeyStr + ";" +
+                        "EndpointSuffix="+ endpointSuffixStr;
+
+        return storageConnectionString;
     }
 }
