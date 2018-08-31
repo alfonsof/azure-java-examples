@@ -4,7 +4,7 @@
  * The credentials are taken from AZURE_AUTH_LOCATION environment variable.
  * The connection string is taken from app.properties file.
  * You must use 1 parameter:
- * CONTAINER = Name of container
+ * CONTAINER_NAME = Name of container
  */
 
 package example;
@@ -25,6 +25,38 @@ public class BlobStorageCreate {
 
         // The name for the new container
         String containerName = args[0];
+        System.out.printf("Container name: %s\n", containerName);
+
+        // Load Configuration from a file and get the Storage Connection String
+        String storageConnectionString = loadConfiguration();
+
+        try
+        {
+            System.out.println("Creating Blob container ...");
+
+            // Retrieve storage account from connection-string.
+            CloudStorageAccount storageAccount = CloudStorageAccount.parse(storageConnectionString);
+
+            // Create the blob client.
+            CloudBlobClient blobClient = storageAccount.createCloudBlobClient();
+
+            // Get a reference to a container.
+            // The container name must be lower case
+            CloudBlobContainer container = blobClient.getContainerReference(containerName);
+
+            // Create the container if it does not exist.
+            container.createIfNotExists();
+
+            System.out.printf("Blob container \"%s\" created.\n", containerName);
+        }
+        catch (Exception e)
+        {
+            // Output the stack trace.
+            e.printStackTrace();
+        }
+    }
+
+    private static String loadConfiguration() {
 
         // The connection string is taken from app.properties file
         Properties prop = new Properties();
@@ -43,31 +75,10 @@ public class BlobStorageCreate {
         // Define the connection-string with your values
         String storageConnectionString =
                 "DefaultEndpointsProtocol=" + defaultEndpointsProtocolStr + ";" +
-                "AccountName=" + accountNameStr + ";" +
-                "AccountKey="+ accountKeyStr + ";" +
-                "EndpointSuffix="+ endpointSuffixStr;
+                        "AccountName=" + accountNameStr + ";" +
+                        "AccountKey="+ accountKeyStr + ";" +
+                        "EndpointSuffix="+ endpointSuffixStr;
 
-        try
-        {
-            // Retrieve storage account from connection-string.
-            CloudStorageAccount storageAccount = CloudStorageAccount.parse(storageConnectionString);
-
-            // Create the blob client.
-            CloudBlobClient blobClient = storageAccount.createCloudBlobClient();
-
-            // Get a reference to a container.
-            // The container name must be lower case
-            CloudBlobContainer container = blobClient.getContainerReference(containerName);
-
-            // Create the container if it does not exist.
-            container.createIfNotExists();
-
-            System.out.printf("Container %s created.\n", containerName);
-        }
-        catch (Exception e)
-        {
-            // Output the stack trace.
-            e.printStackTrace();
-        }
+        return storageConnectionString;
     }
 }
