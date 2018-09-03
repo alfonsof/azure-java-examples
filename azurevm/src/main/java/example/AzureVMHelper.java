@@ -29,8 +29,8 @@ public final class AzureVMHelper {
     private static final String VM_NAME                = "myExampleVM";               // Name of the VM
     private static final KnownLinuxVirtualMachineImage IMAGE_TYPE = KnownLinuxVirtualMachineImage.UBUNTU_SERVER_16_04_LTS; // Image type
     private static final VirtualMachineSizeTypes VM_TYPE          = VirtualMachineSizeTypes.BASIC_A4;  // VM size type
-    private static final String VM_USER_NAME              = "user111";                // User name for VM
-    private static final String VM_PASSWORD               = "Mypass232>";             // Password for VM
+    private static final String VM_USER_NAME           = "user111";                   // User name for VM
+    private static final String VM_PASSWORD            = "Mypass232>";                // Password for VM
 
 
     private AzureVMHelper() {
@@ -44,14 +44,15 @@ public final class AzureVMHelper {
             // Azure Credentials
             final File credFile = new File(System.getenv("AZURE_AUTH_LOCATION"));
             azure = Azure.configure()
-                    .withLogLevel(LogLevel.BASIC)
-                    .authenticate(credFile)
-                    .withDefaultSubscription();
+                        .withLogLevel(LogLevel.BASIC)
+                        .authenticate(credFile)
+                        .withDefaultSubscription();
         } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
 
+        System.out.println("Creating Resource Group ...");
         createResourceGroup(azure);
 
         return azure;
@@ -61,7 +62,7 @@ public final class AzureVMHelper {
      * Deallocate Azure resources
      */
     public static void deleteResources(Azure azure) {
-        System.out.println("Deleting resources...");
+        System.out.println("Deleting Resource Group ...");
         azure.resourceGroups().deleteByName(RESOURCE_GROUP_NAME);
     }
 
@@ -71,12 +72,12 @@ public final class AzureVMHelper {
     public static void listVMs(Azure azure) {
         // get a list of VMs in the same resource group as an existing VM
         PagedList<VirtualMachine> resourceGroupVMs = azure.virtualMachines()
-                .listByResourceGroup(RESOURCE_GROUP_NAME);
+                                                    .listByResourceGroup(RESOURCE_GROUP_NAME);
 
         // for each vitual machine in the resource group, log their name and plan
         for (VirtualMachine virtualMachine : azure.virtualMachines().listByResourceGroup(RESOURCE_GROUP_NAME)) {
             System.out.println("VM: " + virtualMachine.computerName() + " ! ID: " + virtualMachine.id() +
-                    " ! has plan " + virtualMachine.plan());
+                                " ! has plan " + virtualMachine.plan());
         }
     }
 
@@ -97,18 +98,18 @@ public final class AzureVMHelper {
         // Create Network Interface
         NetworkInterface networkInterface = createVirtualInterface(azure, network, publicIPAddress);
 
-        System.out.println("Creating virtual machine...");
+        System.out.println("Creating virtual machine ...");
         VirtualMachine virtualMachine = azure.virtualMachines()
-                .define(VM_NAME)
-                .withRegion(AZURE_REGION)
-                .withExistingResourceGroup(RESOURCE_GROUP_NAME)
-                .withExistingPrimaryNetworkInterface(networkInterface)
-                .withPopularLinuxImage(IMAGE_TYPE)
-                .withRootUsername(VM_USER_NAME)
-                .withRootPassword(VM_PASSWORD)
-                .withExistingAvailabilitySet(availabilitySet)
-                .withSize(VM_TYPE)
-                .create();
+                                            .define(VM_NAME)
+                                            .withRegion(AZURE_REGION)
+                                            .withExistingResourceGroup(RESOURCE_GROUP_NAME)
+                                            .withExistingPrimaryNetworkInterface(networkInterface)
+                                            .withPopularLinuxImage(IMAGE_TYPE)
+                                            .withRootUsername(VM_USER_NAME)
+                                            .withRootPassword(VM_PASSWORD)
+                                            .withExistingAvailabilitySet(availabilitySet)
+                                            .withSize(VM_TYPE)
+                                            .create();
 
         return virtualMachine;
     }
@@ -140,14 +141,14 @@ public final class AzureVMHelper {
         System.out.println("vmAgent");
         System.out.println("  vmAgentVersion: " + vm.instanceView().vmAgent().vmAgentVersion());
         System.out.println("    statuses");
-        for(InstanceViewStatus status : vm.instanceView().vmAgent().statuses()) {
+        for (InstanceViewStatus status : vm.instanceView().vmAgent().statuses()) {
             System.out.println("    code: " + status.code());
             System.out.println("    displayStatus: " + status.displayStatus());
             System.out.println("    message: " + status.message());
             System.out.println("    time: " + status.time());
         }
         System.out.println("disks");
-        for(DiskInstanceView disk : vm.instanceView().disks()) {
+        for (DiskInstanceView disk : vm.instanceView().disks()) {
             System.out.println("  name: " + disk.name());
             System.out.println("  statuses");
             for(InstanceViewStatus status : disk.statuses()) {
@@ -162,7 +163,7 @@ public final class AzureVMHelper {
         System.out.println("  name: " + vm.name());
         System.out.println("  type: " + vm.type());
         System.out.println("VM instance status");
-        for(InstanceViewStatus status : vm.instanceView().statuses()) {
+        for (InstanceViewStatus status : vm.instanceView().statuses()) {
             System.out.println("  code: " + status.code());
             System.out.println("  displayStatus: " + status.displayStatus());
         }
@@ -172,7 +173,7 @@ public final class AzureVMHelper {
      * Start an Azure VM instance
      */
     public static void startVM(VirtualMachine vm) {
-        System.out.println("Starting vm...");
+        System.out.println("Starting VM ...");
         vm.start();
     }
 
@@ -180,7 +181,7 @@ public final class AzureVMHelper {
      * Stop an Azure VM instance
      */
     public static void stopVM(VirtualMachine vm) {
-        System.out.println("Stopping vm...");
+        System.out.println("Stopping VM ...");
         vm.powerOff();
     }
 
@@ -188,7 +189,7 @@ public final class AzureVMHelper {
      * Restart an Azure VM instance
      */
     public static void restartVM(VirtualMachine vm) {
-        System.out.println("Restarting vm...");
+        System.out.println("Restarting VM ...");
         vm.restart();
     }
 
@@ -196,7 +197,7 @@ public final class AzureVMHelper {
      * Delete/Deallocate an Azure VM instance
      */
     public static void deleteVM(VirtualMachine vm) {
-        System.out.println("Deallocating vm...");
+        System.out.println("Deallocating VM ...");
         vm.deallocate();
     }
 
@@ -205,11 +206,11 @@ public final class AzureVMHelper {
      * All resources must be contained in a Resource group
      */
     private static ResourceGroup createResourceGroup(Azure azure) {
-        System.out.println("Creating resource group...");
+        System.out.println("Creating resource group ...");
         ResourceGroup resourceGroup = azure.resourceGroups()
-                .define(RESOURCE_GROUP_NAME)
-                .withRegion(AZURE_REGION)
-                .create();
+                                        .define(RESOURCE_GROUP_NAME)
+                                        .withRegion(AZURE_REGION)
+                                        .create();
         return resourceGroup;
     }
 
@@ -218,13 +219,13 @@ public final class AzureVMHelper {
      * Availability sets make it easier to maintain the virtual machines used by the application
      */
     private static AvailabilitySet createAvailabilitySet(Azure azure) {
-        System.out.println("Creating availability set...");
+        System.out.println("Creating availability set ...");
         AvailabilitySet availabilitySet = azure.availabilitySets()
-                .define(AVAILABILITY_SET_NAME)
-                .withRegion(AZURE_REGION)
-                .withExistingResourceGroup(RESOURCE_GROUP_NAME)
-                .withSku(AvailabilitySetSkuTypes.MANAGED)
-                .create();
+                                            .define(AVAILABILITY_SET_NAME)
+                                            .withRegion(AZURE_REGION)
+                                            .withExistingResourceGroup(RESOURCE_GROUP_NAME)
+                                            .withSku(AvailabilitySetSkuTypes.MANAGED)
+                                            .create();
         return availabilitySet;
     }
 
@@ -233,14 +234,14 @@ public final class AzureVMHelper {
      * A virtual machine must be in a subnet of a Virtual network
      */
     private static Network createVirtualNetwork(Azure azure) {
-        System.out.println("Creating virtual network...");
+        System.out.println("Creating virtual network ...");
         Network network = azure.networks()
-                .define(VIRTUAL_NETWORK_NAME)
-                .withRegion(AZURE_REGION)
-                .withExistingResourceGroup(RESOURCE_GROUP_NAME)
-                .withAddressSpace(ADDRESS_SPACE)
-                .withSubnet(SUBNET_NAME,SUBNET_ADDRESS_SPACE)
-                .create();
+                                .define(VIRTUAL_NETWORK_NAME)
+                                .withRegion(AZURE_REGION)
+                                .withExistingResourceGroup(RESOURCE_GROUP_NAME)
+                                .withAddressSpace(ADDRESS_SPACE)
+                                .withSubnet(SUBNET_NAME,SUBNET_ADDRESS_SPACE)
+                                .create();
         return network;
     }
 
@@ -249,13 +250,13 @@ public final class AzureVMHelper {
      * A Public IP address is needed to communicate with the virtual machine
      */
     private static PublicIPAddress createPublicIp(Azure azure) {
-        System.out.println("Creating public IP address...");
+        System.out.println("Creating public IP address ...");
         PublicIPAddress publicIPAddress = azure.publicIPAddresses()
-                .define(PUBLIC_IP_NAME)
-                .withRegion(AZURE_REGION)
-                .withExistingResourceGroup(RESOURCE_GROUP_NAME)
-                .withDynamicIP()
-                .create();
+                                            .define(PUBLIC_IP_NAME)
+                                            .withRegion(AZURE_REGION)
+                                            .withExistingResourceGroup(RESOURCE_GROUP_NAME)
+                                            .withDynamicIP()
+                                            .create();
         return publicIPAddress;
     }
 
@@ -264,16 +265,16 @@ public final class AzureVMHelper {
      * A virtual machine needs a network interface to communicate on the virtual network
      */
     private static NetworkInterface createVirtualInterface(Azure azure, Network network, PublicIPAddress publicIPAddress) {
-        System.out.println("Creating network interface...");
+        System.out.println("Creating network interface ...");
         NetworkInterface networkInterface = azure.networkInterfaces()
-                .define(NETWORK_INTERFACE_NAME)
-                .withRegion(AZURE_REGION)
-                .withExistingResourceGroup(RESOURCE_GROUP_NAME)
-                .withExistingPrimaryNetwork(network)
-                .withSubnet(SUBNET_NAME)
-                .withPrimaryPrivateIPAddressDynamic()
-                .withExistingPrimaryPublicIPAddress(publicIPAddress)
-                .create();
+                                                .define(NETWORK_INTERFACE_NAME)
+                                                .withRegion(AZURE_REGION)
+                                                .withExistingResourceGroup(RESOURCE_GROUP_NAME)
+                                                .withExistingPrimaryNetwork(network)
+                                                .withSubnet(SUBNET_NAME)
+                                                .withPrimaryPrivateIPAddressDynamic()
+                                                .withExistingPrimaryPublicIPAddress(publicIPAddress)
+                                                .create();
         return networkInterface;
     }
 }
