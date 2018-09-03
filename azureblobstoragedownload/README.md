@@ -2,7 +2,7 @@
 
 This folder contains a Java application example that handles Blob storage on Microsoft Azure.
 
-Download a file from a Blob Storage container in an Azure storage account.
+Download a Blob from a Blob Storage container in an Azure storage account.
 
 ## Requirements
 

@@ -2,7 +2,7 @@
 
 This folder contains a Java application example that handles Blob storage on Microsoft Azure.
 
-Move a file from a Blob Storage container to another Blob Storage container.
+Move a Blob from a Blob Storage container to another Blob Storage container.
 
 ## Requirements
 
@@ -141,15 +141,15 @@ Move a file from a Blob Storage container to another Blob Storage container.
   You must provide 3 parameters:
 
   * `<SOURCE_CONTAINER>`      = Source container name
-  * `<SOURCE_FILE>`           = Source file name
+  * `<SOURCE_BLOB>`           = Source Blob name
   * `<DESTINATION_CONTAINER>` = Destination container name
 
   Run application:
 
   ```bash
-  java -jar azureblobstoragemove.jar source-container source-file destination-container
+  java -jar azureblobstoragemove.jar source-container source-blob destination-container
   ```
 
 * Test the application.
 
-  The file from the source Blob Storage container should be moved to the target Blob Storage container.
+  The Blob from the source Blob Storage container should be moved to the target Blob Storage container.
