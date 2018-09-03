@@ -1,12 +1,12 @@
 /**
  * BlobStorageDownload is an example that handles Blob Storage containers on Microsoft Azure.
- * Download a local file to a Blob Storage container in an Azure storage account.
+ * Download a Blob from a Blob Storage container in an Azure storage account.
  * The credentials are taken from AZURE_AUTH_LOCATION environment variable.
  * The connection string is taken from app.properties file.
  * You must use 3 parameters:
  * CONTAINER_NAME   = Name of container
  * BLOB_NAME        = Blob name in the container
- * LOCAL_FILE_NAME> = Local file name
+ * LOCAL_FILE_NAME  = Local file name
  */
 
 package example;
@@ -25,41 +25,22 @@ public class BlobStorageDownload {
     public static void main(String[] args) {
         String containerName;     // Container name
         String blobName;          // Blob name
-        String uploadFileName;    // Upload local file name
+        String localFileName;     // Local file name
 
         if (args.length < 3) {
-            System.out.println("Not enough parameters. Proper Usage is: java -jar azureblobstorageupload.jar <CONTAINER_NAME> <BLOB_NAME> <LOCAL_FILE_NAME>");
+            System.out.println("Not enough parameters.\nProper Usage is: java -jar azureblobstoragedownload.jar <CONTAINER_NAME> <BLOB_NAME> <LOCAL_FILE_NAME>");
             System.exit(1);
         }
 
         containerName = args[0];
         blobName = args[1];
-        uploadFileName = args[2];
+        localFileName = args[2];
+        System.out.printf("Blob Storage Container name:  %s\n", containerName);
+        System.out.printf("Blob name:                    %s\n", blobName);
+        System.out.printf("Local file name:              %s\n", localFileName);
 
-        System.out.println("Container:  " + containerName);
-        System.out.println("Blob        " + blobName);
-        System.out.println("Local file: " + uploadFileName);
-
-        // The connection string is taken from app.properties file
-        Properties prop = new Properties();
-
-        try {
-            InputStream is = ClassLoader.getSystemResourceAsStream("app.properties");
-            prop.load(is);
-        } catch (IOException e) {
-            System.out.println(e.toString());
-        }
-        String defaultEndpointsProtocolStr = prop.getProperty("DefaultEndpointsProtocol");
-        String accountNameStr = prop.getProperty("AccountName");
-        String accountKeyStr = prop.getProperty("AccountKey");
-        String endpointSuffixStr = prop.getProperty("EndpointSuffix");
-
-        // Define the connection-string with your values
-        String storageConnectionString =
-                "DefaultEndpointsProtocol=" + defaultEndpointsProtocolStr + ";" +
-                        "AccountName=" + accountNameStr + ";" +
-                        "AccountKey=" + accountKeyStr + ";" +
-                        "EndpointSuffix=" + endpointSuffixStr;
+        // Load Configuration from a file and get the Storage Connection String
+        String storageConnectionString = loadConfiguration();
 
         try
         {
@@ -74,16 +55,19 @@ public class BlobStorageDownload {
             CloudBlobContainer container = blobClient.getContainerReference(containerName);
 
             if (container.exists()) {
-                System.out.println("Downloading an object from a Blob Storage to a file ...");
-
                 // Get a reference to Blob.
                 CloudBlockBlob blob = container.getBlockBlobReference(blobName);
-                File destinationFile = new File(uploadFileName);
-                blob.downloadToFile(destinationFile.getAbsolutePath());
-
-                System.out.println("Downloaded");
+                if (blob.exists()) {
+                    System.out.println("Downloading a Blob from a Blob Storage container to a local file ...");
+                    File destinationFile = new File(localFileName);
+                    // Download Blob
+                    blob.downloadToFile(destinationFile.getAbsolutePath());
+                    System.out.println("Downloaded");
+                } else {
+                    System.out.printf("Error: Blob \"%s\" does NOT exist.\n", blobName);    
+                }
             } else {
-                System.out.printf("Container %s does NOT exist.\n", containerName);
+                System.out.printf("Error: Blob Storage container \"%s\" does NOT exist.\n", containerName);
             }
         }
         catch (Exception e)
@@ -91,5 +75,34 @@ public class BlobStorageDownload {
             // Output the stack trace.
             e.printStackTrace();
         }
+    }
+
+    /**
+    * Load Configuration from a file and get the Storage Connection String
+    */
+    private static String loadConfiguration() {
+
+        // The connection string is taken from app.properties file
+        Properties prop = new Properties();
+
+        try {
+            InputStream is = ClassLoader.getSystemResourceAsStream("app.properties");
+            prop.load(is);
+        } catch(IOException e) {
+            System.out.println(e.toString());
+        }
+        String defaultEndpointsProtocolStr = prop.getProperty("DefaultEndpointsProtocol");
+        String accountNameStr = prop.getProperty("AccountName");
+        String accountKeyStr = prop.getProperty("AccountKey");
+        String endpointSuffixStr = prop.getProperty("EndpointSuffix");
+
+        // Define the connection-string with your values
+        String storageConnectionString =
+                "DefaultEndpointsProtocol=" + defaultEndpointsProtocolStr + ";" +
+                        "AccountName=" + accountNameStr + ";" +
+                        "AccountKey="+ accountKeyStr + ";" +
+                        "EndpointSuffix="+ endpointSuffixStr;
+
+        return storageConnectionString;
     }
 }
