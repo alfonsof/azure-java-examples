@@ -75,7 +75,7 @@ public class BlobStorageMove {
                         System.out.println(String.format("\nMoving blob: \"%s\".", sourceBlob.getUri().toURL()));
                         System.out.println(String.format("to container: \"%s\".", destinationContainer.getUri().toURL()));
                         destinationBlob.startCopy(sourceBlob);
-                        
+
                         if (waitForCopyToComplete(destinationBlob) == CopyStatus.SUCCESS) {
                             // Delete the blob
                             sourceBlob.deleteIfExists();
