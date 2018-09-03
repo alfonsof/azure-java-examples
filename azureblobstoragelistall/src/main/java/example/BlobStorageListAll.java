@@ -1,5 +1,5 @@
 /**
- * BlobStorageList is an example that handles Blob Storage containers on Microsoft Azure.
+ * BlobStorageListAll is an example that handles Blob Storage containers on Microsoft Azure.
  * List the blobs in all Blob Storage containers.
  * The credentials are taken from AZURE_AUTH_LOCATION environment variable.
  * The connection string is taken from app.properties file.
@@ -28,11 +28,11 @@ public class BlobStorageListAll {
             // Create the blob client.
             CloudBlobClient blobClient = storageAccount.createCloudBlobClient();
 
-            System.out.printf("List of Blob containers:\n");
+            System.out.printf("List of Blob Storage containers:\n");
 
             // Enumerate all containers and list all blobs
             for (CloudBlobContainer container : blobClient.listContainers()) {
-                System.out.printf("- List of blobs in Blob container %s:\n", container.getName());
+                System.out.printf("- List of blobs in Blob Storage container \"%s\":\n", container.getName());
                 // List the blobs in the container.
                 for (ListBlobItem blobItem : container.listBlobs()) {
                     System.out.println("  - Blob URI : " + blobItem.getUri());
@@ -46,6 +46,9 @@ public class BlobStorageListAll {
         }
     }
 
+    /**
+    * Load Configuration from a file and get the Storage Connection String
+    */
     private static String loadConfiguration() {
 
         // The connection string is taken from app.properties file
