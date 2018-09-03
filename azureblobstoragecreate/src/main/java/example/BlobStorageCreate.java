@@ -19,20 +19,20 @@ import com.microsoft.azure.storage.blob.CloudBlobContainer;
 public class BlobStorageCreate {
     public static void main(String[] args) {
         if (args.length < 1) {
-            System.out.println("Not enough parameters. Proper Usage is: java -jar azureblobstoragecreate.jar <CONTAINER_NAME>");
+            System.out.println("Not enough parameters.\nProper Usage is: java -jar azureblobstoragecreate.jar <CONTAINER_NAME>");
             System.exit(1);
         }
 
         // The name for the new container
         String containerName = args[0];
-        System.out.printf("Container name: %s\n", containerName);
+        System.out.printf("Blob Storage Container name: %s\n", containerName);
 
         // Load Configuration from a file and get the Storage Connection String
         String storageConnectionString = loadConfiguration();
 
         try
         {
-            System.out.println("Creating Blob container ...");
+            System.out.println("Creating Blob Storage container ...");
 
             // Retrieve storage account from connection-string.
             CloudStorageAccount storageAccount = CloudStorageAccount.parse(storageConnectionString);
@@ -47,7 +47,7 @@ public class BlobStorageCreate {
             // Create the container if it does not exist.
             container.createIfNotExists();
 
-            System.out.printf("Blob container \"%s\" created.\n", containerName);
+            System.out.println("Created");
         }
         catch (Exception e)
         {
@@ -56,6 +56,9 @@ public class BlobStorageCreate {
         }
     }
 
+    /**
+    * Load Configuration from a file and get the Storage Connection String
+    */
     private static String loadConfiguration() {
 
         // The connection string is taken from app.properties file
