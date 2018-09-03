@@ -1,11 +1,11 @@
 /**
  * BlobStorageMove is an example that handles Blob Storage containers on Microsoft Azure.
- * Move a file from a Blob Storage container to another Blob Storage container.
+ * Move a Blob from a Blob Storage container to another Blob Storage container.
  * The credentials are taken from AZURE_AUTH_LOCATION environment variable.
  * The connection string is taken from app.properties file.
  * You must use 3 parameters:
  * SOURCE_CONTAINER      = Source container name
- * SOURCE_FILE           = Source file name
+ * SOURCE_BLOB           = Source Blob name
  * DESTINATION_CONTAINER = Destination container name
  */
 
@@ -30,7 +30,7 @@ public class BlobStorageMove {
         String destinationBlobName;      // Destination blob
 
         if (args.length < 3) {
-            System.out.println("Not enough parameters. Proper Usage is: java -jar azureblobstoragemove.jar <SOURCE_CONTAINER> <SOURCE_FILE> <DESTINATION_CONTAINER>");
+            System.out.println("Not enough parameters.\nProper Usage is: java -jar azureblobstoragemove.jar <SOURCE_CONTAINER> <SOURCE_BLOB> <DESTINATION_CONTAINER>");
             System.exit(1);
         }
 
@@ -38,32 +38,13 @@ public class BlobStorageMove {
         sourceBlobName           = args[1];
         destinationContainerName = args[2];
         destinationBlobName      = sourceBlobName;
-
         System.out.println("From - container: " + sourceContainerName);
         System.out.println("From - blob:      " + sourceBlobName);
         System.out.println("To   - container: " + destinationContainerName);
         System.out.println("To   - blob:      " + destinationBlobName);
 
-        // The connection string is taken from app.properties file
-        Properties prop = new Properties();
-
-        try {
-            InputStream is = ClassLoader.getSystemResourceAsStream("app.properties");
-            prop.load(is);
-        } catch(IOException e) {
-            System.out.println(e.toString());
-        }
-        String defaultEndpointsProtocolStr = prop.getProperty("DefaultEndpointsProtocol");
-        String accountNameStr = prop.getProperty("AccountName");
-        String accountKeyStr = prop.getProperty("AccountKey");
-        String endpointSuffixStr = prop.getProperty("EndpointSuffix");
-
-        // Define the connection-string with your values
-        String storageConnectionString =
-                "DefaultEndpointsProtocol=" + defaultEndpointsProtocolStr + ";" +
-                        "AccountName=" + accountNameStr + ";" +
-                        "AccountKey="+ accountKeyStr + ";" +
-                        "EndpointSuffix="+ endpointSuffixStr;
+        // Load Configuration from a file and get the Storage Connection String
+        String storageConnectionString = loadConfiguration();
 
         try
         {
@@ -77,26 +58,39 @@ public class BlobStorageMove {
             // The container name must be lower case
             CloudBlobContainer sourceContainer = blobClient.getContainerReference(sourceContainerName);
 
-            // Get a reference to a destiny container.
-            // The container name must be lower case
-            CloudBlobContainer destinationContainer = blobClient.getContainerReference(destinationContainerName);
+            if (sourceContainer.exists()) {
+                // Get a reference to source Blob.
+                CloudBlockBlob sourceBlob = sourceContainer.getBlockBlobReference(sourceBlobName);
 
-            // Get a reference to source Blob.
-            CloudBlockBlob sourceBlob = sourceContainer.getBlockBlobReference(sourceBlobName);
+                if (sourceBlob.exists()) {
+                    // Get a reference to a destiny container.
+                    // The container name must be lower case
+                    CloudBlobContainer destinationContainer = blobClient.getContainerReference(destinationContainerName);
 
-            // Get a reference to destiny Blob.
-            CloudBlockBlob destinationBlob = destinationContainer.getBlockBlobReference(destinationBlobName);
+                    if (destinationContainer.exists()) {
+                        // Get a reference to destiny Blob.
+                        CloudBlockBlob destinationBlob = destinationContainer.getBlockBlobReference(destinationBlobName);
 
-            // Copy the blob
-            System.out.println(String.format("\nMoving blob: \"%s\".", sourceBlob.getUri().toURL()));
-            System.out.println(String.format("to container: \"%s\".", destinationContainer.getUri().toURL()));
-            destinationBlob.startCopy(sourceBlob);
-            if (waitForCopyToComplete(destinationBlob) == CopyStatus.SUCCESS) {
-                // Delete the blob
-                sourceBlob.deleteIfExists();
-                System.out.println("Successfully moved the blob.");
+                        // Copy the blob
+                        System.out.println(String.format("\nMoving blob: \"%s\".", sourceBlob.getUri().toURL()));
+                        System.out.println(String.format("to container: \"%s\".", destinationContainer.getUri().toURL()));
+                        destinationBlob.startCopy(sourceBlob);
+                        
+                        if (waitForCopyToComplete(destinationBlob) == CopyStatus.SUCCESS) {
+                            // Delete the blob
+                            sourceBlob.deleteIfExists();
+                            System.out.printf("Blob \"%s\" moved\n", sourceBlobName);
+                        } else {
+                            System.out.printf("Error: Blob \"%s\" NOT moved.\n", sourceBlobName);
+                        }
+                    } else {
+                        System.out.printf("Error: Destination Blob Storage container \"%s\" does NOT exist.\n", destinationContainerName);
+                    }
+                } else {
+                    System.out.printf("Error: Source Blob \"%s\" does NOT exist.\n", sourceBlobName);
+                }
             } else {
-                System.out.println("Not successfully moved the blob.");
+                System.out.printf("Error: Source Blob Storage container \"%s\" does NOT exist.\n", sourceContainerName);
             }
         }
         catch (Exception e)
@@ -123,5 +117,34 @@ public class BlobStorageMove {
         }
 
         return copyStatus;
+    }
+
+    /**
+    * Load Configuration from a file and get the Storage Connection String
+    */
+    private static String loadConfiguration() {
+
+        // The connection string is taken from app.properties file
+        Properties prop = new Properties();
+
+        try {
+            InputStream is = ClassLoader.getSystemResourceAsStream("app.properties");
+            prop.load(is);
+        } catch(IOException e) {
+            System.out.println(e.toString());
+        }
+        String defaultEndpointsProtocolStr = prop.getProperty("DefaultEndpointsProtocol");
+        String accountNameStr = prop.getProperty("AccountName");
+        String accountKeyStr = prop.getProperty("AccountKey");
+        String endpointSuffixStr = prop.getProperty("EndpointSuffix");
+
+        // Define the connection-string with your values
+        String storageConnectionString =
+                "DefaultEndpointsProtocol=" + defaultEndpointsProtocolStr + ";" +
+                        "AccountName=" + accountNameStr + ";" +
+                        "AccountKey="+ accountKeyStr + ";" +
+                        "EndpointSuffix="+ endpointSuffixStr;
+
+        return storageConnectionString;
     }
 }
