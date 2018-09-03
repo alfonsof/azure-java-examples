@@ -19,20 +19,20 @@ import com.microsoft.azure.storage.blob.CloudBlobContainer;
 public class BlobStorageDelete {
     public static void main(String[] args) {
         if (args.length < 1) {
-            System.out.println("Not enough parameters. Proper Usage is: java -jar azureblobstoragedelete.jar <CONTAINER_NAME>");
+            System.out.println("Not enough parameters.\nProper Usage is: java -jar azureblobstoragedelete.jar <CONTAINER_NAME>");
             System.exit(1);
         }
 
         // The name for the container
         String containerName = args[0];
-        System.out.printf("Container name: %s\n", containerName);
+        System.out.printf("Blob Storage Container name: %s\n", containerName);
 
         // Load Configuration from a file and get the Storage Connection String
         String storageConnectionString = loadConfiguration();
 
         try
         {
-            System.out.println("Deleting Blob container ...");
+            System.out.println("Deleting Blob Storage container ...");
 
             // Retrieve storage account from connection-string.
             CloudStorageAccount storageAccount = CloudStorageAccount.parse(storageConnectionString);
@@ -47,9 +47,9 @@ public class BlobStorageDelete {
             if (container.exists()) {
                 // Delete the container if it exist.
                 container.deleteIfExists();
-                System.out.printf("Blob container \"%s\" deleted.\n", containerName);
+                System.out.println("Deleted");
             } else {
-                System.out.printf("Blob container \"%s\" does NOT exist.\n", containerName);
+                System.out.printf("Error: Blob Storage container \"%s\" does NOT exist.\n", containerName);
             }
 
         }
@@ -60,6 +60,9 @@ public class BlobStorageDelete {
         }
     }
 
+    /**
+    * Load Configuration from a file and get the Storage Connection String
+    */
     private static String loadConfiguration() {
 
         // The connection string is taken from app.properties file
