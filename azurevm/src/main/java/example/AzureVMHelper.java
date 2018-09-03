@@ -32,6 +32,9 @@ public final class AzureVMHelper {
     private static final String VM_USER_NAME           = "user111";                   // User name for VM
     private static final String VM_PASSWORD            = "Mypass232>";                // Password for VM
 
+    private static Azure azure = null;
+    private static VirtualMachine vm = null;
+
 
     private AzureVMHelper() {
     }
@@ -39,7 +42,7 @@ public final class AzureVMHelper {
     /**
      * Initiate Azure connection
      */
-    public static Azure initResources(Azure azure) {
+    public static void initResources() {
         try {
             // Azure Credentials
             final File credFile = new File(System.getenv("AZURE_AUTH_LOCATION"));
@@ -52,16 +55,15 @@ public final class AzureVMHelper {
             e.printStackTrace();
         }
 
-        System.out.println("Creating Resource Group ...");
         createResourceGroup(azure);
 
-        return azure;
+        return;
     }
 
     /**
      * Deallocate Azure resources
      */
-    public static void deleteResources(Azure azure) {
+    public static void deleteResources() {
         System.out.println("Deleting Resource Group ...");
         azure.resourceGroups().deleteByName(RESOURCE_GROUP_NAME);
     }
@@ -69,15 +71,12 @@ public final class AzureVMHelper {
     /**
      * List Compute Engine instances
      */
-    public static void listVMs(Azure azure) {
-        // get a list of VMs in the same resource group as an existing VM
-        PagedList<VirtualMachine> resourceGroupVMs = azure.virtualMachines()
-                                                    .listByResourceGroup(RESOURCE_GROUP_NAME);
-
-        // for each vitual machine in the resource group, log their name and plan
+    public static void listVMs() {
+        System.out.println("\nList VMs in resource group:");
+        // For each vitual machine in the resource group, get their information
         for (VirtualMachine virtualMachine : azure.virtualMachines().listByResourceGroup(RESOURCE_GROUP_NAME)) {
-            System.out.println("VM: " + virtualMachine.computerName() + " ! ID: " + virtualMachine.id() +
-                                " ! has plan " + virtualMachine.plan());
+            System.out.println("- VM: " + virtualMachine.computerName() + " | ID: " + virtualMachine.id() +
+                                " | has plan " + virtualMachine.plan());
         }
     }
 
@@ -85,7 +84,7 @@ public final class AzureVMHelper {
      * Run an Azure VM instance
      * Create an instance and create a boot disk on the fly
      */
-    public static VirtualMachine createVM(Azure azure) {
+    public static void createVM() {
         // Create Availability Set
         AvailabilitySet availabilitySet = createAvailabilitySet(azure);
 
@@ -99,25 +98,25 @@ public final class AzureVMHelper {
         NetworkInterface networkInterface = createVirtualInterface(azure, network, publicIPAddress);
 
         System.out.println("Creating virtual machine ...");
-        VirtualMachine virtualMachine = azure.virtualMachines()
-                                            .define(VM_NAME)
-                                            .withRegion(AZURE_REGION)
-                                            .withExistingResourceGroup(RESOURCE_GROUP_NAME)
-                                            .withExistingPrimaryNetworkInterface(networkInterface)
-                                            .withPopularLinuxImage(IMAGE_TYPE)
-                                            .withRootUsername(VM_USER_NAME)
-                                            .withRootPassword(VM_PASSWORD)
-                                            .withExistingAvailabilitySet(availabilitySet)
-                                            .withSize(VM_TYPE)
-                                            .create();
+        vm = azure.virtualMachines()
+                                    .define(VM_NAME)
+                                    .withRegion(AZURE_REGION)
+                                    .withExistingResourceGroup(RESOURCE_GROUP_NAME)
+                                    .withExistingPrimaryNetworkInterface(networkInterface)
+                                    .withPopularLinuxImage(IMAGE_TYPE)
+                                    .withRootUsername(VM_USER_NAME)
+                                    .withRootPassword(VM_PASSWORD)
+                                    .withExistingAvailabilitySet(availabilitySet)
+                                    .withSize(VM_TYPE)
+                                    .create();
 
-        return virtualMachine;
+        return;
     }
 
     /**
      * List an Azure VM instance
      */
-    public static void listVM(VirtualMachine vm) {
+    public static void listVM() {
         System.out.println("hardwareProfile");
         System.out.println("    vmSize: " + vm.size());
         System.out.println("storageProfile");
@@ -172,7 +171,7 @@ public final class AzureVMHelper {
     /**
      * Start an Azure VM instance
      */
-    public static void startVM(VirtualMachine vm) {
+    public static void startVM() {
         System.out.println("Starting VM ...");
         vm.start();
     }
@@ -180,7 +179,7 @@ public final class AzureVMHelper {
     /**
      * Stop an Azure VM instance
      */
-    public static void stopVM(VirtualMachine vm) {
+    public static void stopVM() {
         System.out.println("Stopping VM ...");
         vm.powerOff();
     }
@@ -188,7 +187,7 @@ public final class AzureVMHelper {
     /**
      * Restart an Azure VM instance
      */
-    public static void restartVM(VirtualMachine vm) {
+    public static void restartVM() {
         System.out.println("Restarting VM ...");
         vm.restart();
     }
@@ -196,7 +195,7 @@ public final class AzureVMHelper {
     /**
      * Delete/Deallocate an Azure VM instance
      */
-    public static void deleteVM(VirtualMachine vm) {
+    public static void deleteVM() {
         System.out.println("Deallocating VM ...");
         vm.deallocate();
     }

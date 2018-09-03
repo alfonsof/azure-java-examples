@@ -5,56 +5,51 @@
 
 package example;
 
-import com.microsoft.azure.management.Azure;
-import com.microsoft.azure.management.compute.VirtualMachine;
 import java.io.IOException;
 import java.util.Scanner;
 
 public class AzureVM {
     
     public static void main(String[] args) throws IOException {
-        Azure azure = null;
-        VirtualMachine virtualMachine = null;
         Scanner sc = new Scanner(System.in);
         int option;
 
-        azure = AzureVMHelper.initResources(azure);
+        AzureVMHelper.initResources();
 
         do {
             printMenu();
             option = getOption(sc);
-
             switch (option) {
                 case 0:
+                    System.out.println("\nBye");
                     break;
                 case 1:  // List all VMs
-                    AzureVMHelper.listVMs(azure);
+                    AzureVMHelper.listVMs();
                     break;
                 case 2:  // Create VM
-                    virtualMachine = AzureVMHelper.createVM(azure);
+                    AzureVMHelper.createVM();
                     break;
                 case 3:  // List VM
-                    AzureVMHelper.listVM(virtualMachine);
+                    AzureVMHelper.listVM();
                     break;
                 case 4:  // Start VM
-                    AzureVMHelper.startVM(virtualMachine);
+                    AzureVMHelper.startVM();
                     break;
                 case 5:  // Stop VM
-                    AzureVMHelper.stopVM(virtualMachine);
+                    AzureVMHelper.stopVM();
                     break;
                 case 6:  // Restart VM
-                    AzureVMHelper.restartVM(virtualMachine);
+                    AzureVMHelper.restartVM();
                     break;
                 case 7:  // Delete/Deallocate VM
-                    AzureVMHelper.deleteVM(virtualMachine);
-                    virtualMachine = null;
+                    AzureVMHelper.deleteVM();
                     break;
                 default:
                     System.out.println("ERROR: Enter a valid option!!");
             }
         } while (option != 0);
 
-        AzureVMHelper.deleteResources(azure);
+        AzureVMHelper.deleteResources();
         sc.close();
     }
 
