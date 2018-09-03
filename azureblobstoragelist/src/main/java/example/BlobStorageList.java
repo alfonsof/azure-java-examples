@@ -21,13 +21,13 @@ import com.microsoft.azure.storage.blob.ListBlobItem;
 public class BlobStorageList {
     public static void main(String[] args) {
         if (args.length < 1) {
-            System.out.println("Not enough parameters. Proper Usage is: java -jar azureblobstoragelist.jar <CONTAINER_NAME>");
+            System.out.println("Not enough parameters.\nProper Usage is: java -jar azureblobstoragelist.jar <CONTAINER_NAME>");
             System.exit(1);
         }
 
         // The name for the new container
         String containerName = args[0];
-        System.out.printf("Container name: %s\n", containerName);
+        System.out.printf("Blob Storage container name: %s\n", containerName);
 
         // Load Configuration from a file and get the Storage Connection String
         String storageConnectionString = loadConfiguration();
@@ -45,7 +45,7 @@ public class BlobStorageList {
             CloudBlobContainer container = blobClient.getContainerReference(containerName);
 
             if (container.exists()) {
-                System.out.printf("List of blobs in Blob container \"%s\":\n", containerName);
+                System.out.printf("List of blobs in Blob Storage container \"%s\":\n", containerName);
                 // List the blobs in the container.
                 for (ListBlobItem blobItem : container.listBlobs()) {
                     System.out.println("- Blob URI : " + blobItem.getUri());
@@ -56,7 +56,7 @@ public class BlobStorageList {
                     }
                 }
             } else {
-                System.out.printf("Container \"%s\" does NOT exist.\n", containerName);
+                System.out.printf("Error: Container \"%s\" does NOT exist.\n", containerName);
             }
         }
         catch (Exception e)
@@ -66,6 +66,9 @@ public class BlobStorageList {
         }
     }
 
+    /**
+    * Load Configuration from a file and get the Storage Connection String
+    */
     private static String loadConfiguration() {
 
         // The connection string is taken from app.properties file
