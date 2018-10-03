@@ -9,7 +9,7 @@ Azure Management Libraries for Java and Azure SDKs for Java allow Java developer
 Azure offers two different kinds of API:
 
 * Azure Management Libraries for Java: It is a higher-level, object-oriented API for managing Azure resources, that is optimized for ease of use, succinctness and consistency.
-* Azure SDKs for Java: It enables the programmatic consumption of miscellaneous Azure services (not management )
+* Azure SDKs for Java: It enables the programmatic consumption of miscellaneous Azure services (not management).
 
 ## Quick start
 
