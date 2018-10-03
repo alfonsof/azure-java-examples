@@ -7,7 +7,9 @@ Move a Blob from a Blob Storage container to another Blob Storage container.
 ## Requirements
 
 * You must have a [Microsoft Azure](https://azure.microsoft.com/) subscription.
+
 * You must have an Azure storage account.
+
 * The code was written for Java 8 and Azure SDKs for Java.
 
 ## Using the code
