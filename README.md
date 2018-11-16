@@ -35,6 +35,7 @@ This is the list of examples:
 * [azureblobstoragelistall](/azureblobstoragelistall) - Azure Blob Storage List All: Example of how to handle Azure Blob Storage and list the blobs in all Blob Storage containers in an Azure storage account. It uses Azure SDKs for Java.
 * [azureblobstorageupload](/azureblobstorageupload) - Azure Blob Storage Upload: Example of how to handle Azure Blob Storage and upload a local file to a Blob Storage container in an Azure storage account. It uses Azure SDKs for Java.
 * [azureblobstoragedownload](/azureblobstoragedownload) - Azure Blob Storage Download: Example of how to handle Azure Blob Storage and download a Blob from a Blob Storage container in an Azure storage account. It uses Azure SDKs for Java.
+* [azureblobstoragedeleteobject](/azureblobstoragedeleteobject) - Azure Blob Storage Delete Object: Example of how to handle Azure Blob Storage and delete a Blob in a Blob Storage container in an Azure storage account.
 * [azureblobstoragecopy](/azureblobstoragecopy) - Azure Blob Storage Copy: Example of how to handle Azure Blob Storage and copy a Blob from a Blob Storage container to another Blob Storage container in an Azure storage account. It uses Azure SDKs for Java.
 * [azureblobstoragemove](/azureblobstoragemove) - Azure Blob Storage Move: Example of how to handle Azure Blob Storage and move a Blob from a Blob Storage container to another Blob Storage container in an Azure storage account. It uses Azure SDKs for Java.
 
