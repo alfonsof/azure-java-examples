@@ -3,7 +3,7 @@
  * Delete a Blob in a Blob Storage container.
  * The credentials are taken from AZURE_AUTH_LOCATION environment variable.
  * The connection string is taken from app.properties file.
- * You must use 1 parameter:
+ * You must use 2 parameters:
  * CONTAINER_NAME = Name of container
  * BLOB_NAME = Name of blob
  */
