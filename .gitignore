@@ -31,3 +31,8 @@ out/
 
 # Mac
 .DS_Store
+
+# Azure Functions
+local.settings.json
+bin/
+obj/
