@@ -123,7 +123,7 @@ It handles an Azure Function that responds to an HTTP request.
   * Select `</> Get function URL`
   * You will get your URL with Key: `default (Function key)`
 
-  Run function:
+  Run the function:
 
   Your HTTP request normally looks like the following URL:
 
@@ -139,7 +139,7 @@ It handles an Azure Function that responds to an HTTP request.
 
 * Test the function.
 
-  Go to the URL: `https://<YOUR_APP>.azurewebsites.net/api/HttpTrigger-Java?name=PETER&code=<FUNCTION_KEY>` using a browser.
+  Go to the URL: `https://<FUNCTION_APP>.azurewebsites.net/api/HttpTrigger-Java?name=PETER&code=<FUNCTION_KEY>` using a browser.
 
   You should see the response:
 
