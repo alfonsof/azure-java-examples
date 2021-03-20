@@ -10,7 +10,11 @@ Copy a Blob from a Blob Storage container to another Blob Storage container.
 
 * You must have an Azure storage account.
 
-* The code was written for Java 8 and Azure SDKs for Java.
+* The code was written for:
+ 
+  *  Java 8
+  *  Apache Maven 3
+  *  Azure SDKs for Java
 
 ## Using the code
 
