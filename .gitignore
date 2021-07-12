@@ -8,7 +8,7 @@
 log/
 target/
 
-# Intellij
+# IntelliJ
 .idea/
 *.iml
 *.iws
@@ -20,7 +20,10 @@ out/
 .project
 .settings/
 
-# Package Files #
+# Visual Studio Code
+.vscode/
+
+# Package Files
 *.jar
 *.war
 *.ear
@@ -29,10 +32,10 @@ out/
 *.tar.gz
 *.rar
 
-# Mac
-.DS_Store
-
 # Azure Functions
 local.settings.json
 bin/
 obj/
+
+# Mac
+.DS_Store
