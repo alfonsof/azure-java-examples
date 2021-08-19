@@ -56,6 +56,8 @@ It handles an Azure Function that responds to a Blob Storage event (trigger) whe
 
 * Create the Azure Funtion project and the Azure Function (Boilerplate code)
 
+  *This step is only necessary when you want to create an Azure Function from scratch.*
+
   The Azure Functions Core Tools help you to create the boilerplate code for the Azure Funtion project and the Azure Function using a Maven archetype
 
   In the terminal window or from a command prompt, navigate to an empty folder for your project, and run the following command:
@@ -80,6 +82,12 @@ It handles an Azure Function that responds to a Blob Storage event (trigger) whe
     * `Function.java` - Code of the function.
 
   *Because `local.settings.json` can contain secrets downloaded from Azure, the file is excluded from source control by default in the `.gitignore` file.*
+
+* Create a Storage Account for the input source
+  
+  You must create the Storage Account, using the Azure console.
+  The storage account must be a StorageV2 (general purpose v2) account kind.
+  Create a blob container with the `samples-workitems` name in this Storage Account.
 
 * Package the function
 
@@ -139,9 +147,9 @@ It handles an Azure Function that responds to a Blob Storage event (trigger) whe
 
   The runtime will waiting for a blob event (trigger).
 
-  You can upload a file to the container and you will get the message with the result.
+  Upload a file to the blob storage container in the storage account.
 
-  Example:
+  You should see the next message in the log:
   
   ```bash
   Java Blob trigger function processed a blob.

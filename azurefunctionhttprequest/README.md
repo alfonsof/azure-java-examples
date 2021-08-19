@@ -54,22 +54,24 @@ It handles an Azure Function that responds to an HTTP request.
 
 ## Using the code
 
-* Create an Azure Functions project
+* Create the Azure Funtion project and the Azure Function (Boilerplate code)
+
+  *This step is only necessary when you want to create an Azure Function from scratch.*
   
-  * Using Maven:
+  The Azure Functions Core Tools help you to create the boilerplate code for the Azure Funtion project and the Azure Function using a Maven archetype
 
-    In the terminal window or from a command prompt, navigate to an empty folder for your project, and run the following command:
+  In the terminal window or from a command prompt, navigate to an empty folder for your project, and run the following command:
 
-    ```bash
-    mvn archetype:generate "-DarchetypeGroupId=com.microsoft.azure" "-DarchetypeArtifactId=azure-functions-archetype" "-DjavaVersion=8"
-    ```
+  ```bash
+  mvn archetype:generate "-DarchetypeGroupId=com.microsoft.azure" "-DarchetypeArtifactId=azure-functions-archetype" "-DjavaVersion=8"
+  ```
 
-    Maven asks you for values needed to finish generating the project on deployment. Provide the following values when prompted:
-    * groupId: com.alfonsof.azureexamples
-    * artifactId: azurefunctionhttprequest
-    * version: 1.0.0
-    * package: example
-    * trigger: HttpTrigger
+  Maven asks you for values needed to finish generating the project on deployment. Provide the following values when prompted:
+  * groupId: com.alfonsof.azureexamples
+  * artifactId: azurefunctionhttprequest
+  * version: 1.0.0
+  * package: example
+  * trigger: HttpTrigger
 
   Then, the project is created with `azurefunctionhttprequest` and these files:
 
@@ -82,7 +84,7 @@ It handles an Azure Function that responds to an HTTP request.
     * `FunctionTest.java` - A unit test for your function.
     * `HttpResponseMessageMock.java` - The mock for HttpResponseMessage.
 
-  Because `local.settings.json` can contain secrets downloaded from Azure, the file is excluded from source control by default in the `.gitignore` file.
+  *Because `local.settings.json` can contain secrets downloaded from Azure, the file is excluded from source control by default in the `.gitignore` file.*
 
 * Package the function
 
