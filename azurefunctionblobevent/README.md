@@ -54,7 +54,7 @@ It handles an Azure Function that responds to a Blob Storage event (trigger) whe
 
 ## Using the code
 
-* Create the Azure Funtion project and the Azure Function (Boilerplate code)
+* Create the Azure Funtion project and the Azure Function (Boilerplate code).
 
   *This step is only necessary when you want to create an Azure Function from scratch.*
 
@@ -83,13 +83,13 @@ It handles an Azure Function that responds to a Blob Storage event (trigger) whe
 
   *Because `local.settings.json` can contain secrets downloaded from Azure, the file is excluded from source control by default in the `.gitignore` file.*
 
-* Create a Storage Account for the input source
+* Create a Storage Account for the input source.
   
   You must create the Storage Account, using the Azure console.
   The storage account must be a StorageV2 (general purpose v2) account kind.
   Create a blob container with the `samples-workitems` name in this Storage Account.
 
-* Package the function
+* Configure the Azure Function.
 
   You must configurate the `pom.xml` file for a proper creation of the Function App during the subsequent deployment process.
 
@@ -129,13 +129,15 @@ It handles an Azure Function that responds to a Blob Storage event (trigger) whe
   </configuration>
   ```
 
+* Package the Azure Function.
+  
   Package your code into a new Function app using the `package` Maven target.
 
   ```bash
   mvn clean package
   ```
 
-* Run your function project locally
+* Run your Azure Function project locally.
 
   You can run your function locally.
   
@@ -159,7 +161,7 @@ It handles an Azure Function that responds to a Blob Storage event (trigger) whe
 
   To stop debugging, use Ctrl-C in the terminal.
 
-* Deploy the function to Azure & Create the Function App
+* Deploy the Azure Function to Azure & Create the Function App.
 
   The deploy process to Azure Functions uses account credentials from the Azure CLI. Log in with the Azure CLI before continuing.
 
@@ -186,7 +188,7 @@ It handles an Azure Function that responds to a Blob Storage event (trigger) whe
   [INFO] ------------------------------------------------------------------------
   ```
 
-* Test the function
+* Test the function.
 
   Upload a file to the source blob storage container in the storage account.
 

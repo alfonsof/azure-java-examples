@@ -54,7 +54,7 @@ It handles an Azure Function that responds to an HTTP request.
 
 ## Using the code
 
-* Create the Azure Funtion project and the Azure Function (Boilerplate code)
+* Create the Azure Funtion project and the Azure Function (Boilerplate code).
 
   *This step is only necessary when you want to create an Azure Function from scratch.*
   
@@ -86,7 +86,7 @@ It handles an Azure Function that responds to an HTTP request.
 
   *Because `local.settings.json` can contain secrets downloaded from Azure, the file is excluded from source control by default in the `.gitignore` file.*
 
-* Package the function
+* Configure the Azure Function.
 
   You must configurate the `pom.xml` file for a proper creation of the Function App during the subsequent deployment process.
 
@@ -126,13 +126,15 @@ It handles an Azure Function that responds to an HTTP request.
   </configuration>
   ```
 
+* Package the Azure Function.
+
   Package your code into a new Function app using the `package` Maven target.
 
   ```bash
   mvn clean package
   ```
 
-* Run your function project locally
+* Run your function project locally.
 
   You can run your function locally.
   
@@ -156,7 +158,7 @@ It handles an Azure Function that responds to an HTTP request.
 
   To stop debugging, use Ctrl-C in the terminal.
 
-* Deploy the function to Azure & Create the Function App
+* Deploy the Azure Function to Azure & Create the Function App.
 
   The deploy process to Azure Functions uses account credentials from the Azure CLI. Log in with the Azure CLI before continuing.
 
