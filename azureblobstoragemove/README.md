@@ -50,7 +50,7 @@ Move a Blob from a Blob Storage container to another Blob Storage container.
     AZURE_AUTH_LOCATION = /path/to/my.azureauth
     ```
 
-* Configure your storage account.
+* Create a storage account.
 
   An Azure storage account contains all of your Azure Storage data objects: blobs, file shares, queues, tables, and disks. The storage account provides a unique namespace for your Azure Storage data that's accessible from anywhere in the world over HTTP or HTTPS. Data in your storage account is durable and highly available, secure, and massively scalable.
   
@@ -68,20 +68,18 @@ Move a Blob from a Blob Storage container to another Blob Storage container.
                   └── Blob_2_3/
   ```
 
-  Create a storage account:
+  Create a storage account using the Azure portal:
   
-  1. Sign in to the Azure portal.
-  2. Select the "Storage accounts" option. On the Storage Accounts window that appears, choose Add.
-  3. Enter a name for your storage account.
-  4. Specify the deployment model to be used: Resource Manager or Classic. Select Resource Manager deployment model.
-  5. Select the type of storage account: General purpose or Blob storage. Select General purpose.
-  6. Select the geographic location for your storage account. 
-  7. Select the replication option for the storage account: LRS, GRS, RA-GRS, or ZRS. Set Replication to Locally Redundant storage (LRS).
-  8. Select the subscription in which you want to create the new storage account.
-  9. Specify a new resource group or select an existing resource group. 
-  10. Click Create to create the storage account.
+  1. Select the `Storage account` option and choose `Create`.
+  2. Select the `Subscription` in which you want to create the new storage account.
+  3. Select the `Resource Group` for your storage account.
+  4. Enter a `name` for your storage account.
+  5. Select the `Region` for your storage account. 
+  6. Select the `Performance` to be used.
+  7. Select the `Redundancy` to be used.
+  8. Click `Create` to create the storage account.
 
-* Configure your Azure Storage connection string.
+* Configure your application.
 
   A connection string includes the authentication information required for your application to access data in an Azure Storage account at runtime.
 
@@ -89,17 +87,17 @@ Move a Blob from a Blob Storage container to another Blob Storage container.
 
   You can find your storage account's connection strings in the Azure portal:
   
-    1. Navigate to "Storage Accounts".
+    1. Navigate to `Storage Account`.
     2. Select your storage account.
-    3. You can see your connection strings and get your account name and account key.
+    3. Select `Access keys` and you can see your Storage account name, connection strings and account keys.
+
+  The connection string looks like this:
 
     ```bash
-    DefaultEndpointsProtocol=https;AccountName=ACCOUNT_NAME;AccountKey=ACCOUNT_KEY;EndpointSuffix=core.windows.net
+    DefaultEndpointsProtocol=https;AccountName=<ACCOUNT_NAME>;AccountKey=<ACCOUNT_KEY>;EndpointSuffix=core.windows.net
     ```
   
-  Although Azure Storage supports both HTTP and HTTPS in a connection string, HTTPS is highly recommended.
-
-  We store the connection string in a properties file (`app.properties`). The file content is:
+  The application configuration is stored in the `app.properties` properties file, located in the path `src/main/resources`. The file content is:
 
   ```bash
   DefaultEndpointsProtocol=https
@@ -108,23 +106,14 @@ Move a Blob from a Blob Storage container to another Blob Storage container.
   EndpointSuffix=core.windows.net
   ```
 
-  You only need to edit the file `app.properties` and change the values of:
+  You must edit the `app.properties` file and replace the values of:
   
   * `<ACCOUNT_NAME>` by the account name of your storage account.
   * `<ACCOUNT_KEY>` by the account key of your storage account.
   
-  The application creates a connection string for your Azure storage account using the following format:
-
-  ```bash
-  DefaultEndpointsProtocol=https;AccountName=ACCOUNT_NAME;AccountKey=ACCOUNT_KEY;EndpointSuffix=core.windows.net
-  ```
+  The application uses this information for accessing your Azure storage account.
 
 * Run the code.
-
-  You must edit the file `app.properties` and change the values of:
-  
-  * `<ACCOUNT_NAME>` by the account name of your storage account.
-  * `<ACCOUNT_KEY>` by the account key of your storage account.
 
   You must provide 3 parameters:
 
