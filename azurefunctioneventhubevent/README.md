@@ -295,36 +295,36 @@ It handles an Azure Function that responds to an Event Hub event (trigger) when 
   [INFO] ------------------------------------------------------------------------
   ```
 
-  * Configure in the Function App the connection string for trigger Event Hub.
+* Configure in the Function App the connection string for trigger Event Hub.
 
-    You must configure the connection strings or secrets for trigger, input map to values in the application settings for the Function App when running in Azure.
+  You must configure the connection strings or secrets for trigger, input map to values in the application settings for the Function App when running in Azure.
 
-    You can make that in two ways:
+  You can make that in two ways:
 
-    * Using the Azure console.
+  * Using the Azure console.
 
-      Go to your Function App.
+    Go to your Function App.
 
-      Select: `Settings > Configuration > Application settings > + New application setting`
+    Select: `Settings > Configuration > Application settings > + New application setting`
 
-      Set the setting `MY_EVENT_HUB_IN` name to:
+    Set the setting `MY_EVENT_HUB_IN` name to:
 
-      `Endpoint=sb://<EVENT_HUB_NAMESPACE>.servicebus.windows.net/;SharedAccessKeyName=<EVENT_HUB_SAS_POLICY>;SharedAccessKey=<EVENT_HUB_KEY>`
+    `Endpoint=sb://<EVENT_HUB_NAMESPACE>.servicebus.windows.net/;SharedAccessKeyName=<EVENT_HUB_SAS_POLICY>;SharedAccessKey=<EVENT_HUB_KEY>`
 
-      Select `Save`.
+    Select `Save`.
 
-    * Using the Azure CLI.
+  * Using the Azure CLI.
 
-      ```bash
-      az functionapp config appsettings set --name MyFunctionApp --resource-group MyResourceGroup --settings "MY_EVENT_HUB_IN=Endpoint=sb://<EVENT_HUB_NAMESPACE>.servicebus.windows.net/;SharedAccessKeyName=<EVENT_HUB_SAS_POLICY>;SharedAccessKey=<EVENT_HUB_KEY>;EntityPath=<EVENT_HUB_NAME>""
-      ```
+    ```bash
+    az functionapp config appsettings set --name MyFunctionApp --resource-group MyResourceGroup --settings "MY_EVENT_HUB_IN=Endpoint=sb://<EVENT_HUB_NAMESPACE>.servicebus.windows.net/;SharedAccessKeyName=<EVENT_HUB_SAS_POLICY>;SharedAccessKey=<EVENT_HUB_KEY>;EntityPath=<EVENT_HUB_NAME>""
+    ```
 
-    In both cases, replace with the proper:
+  In both cases, replace with the proper:
 
-    * `<EVENT_HUB_NAMESPACE>` - Event Hub namespace.
-    * `<EVENT_HUB_SAS_POLICY>` - Event Hub SAS Policy.
-    * `<EVENT_HUB_KEY>` - Key of the Event Hub.
-    * `<EVENT_HUB_NAME>` - Name of the Event Hub.
+  * `<EVENT_HUB_NAMESPACE>` - Event Hub namespace.
+  * `<EVENT_HUB_SAS_POLICY>` - Event Hub SAS Policy.
+  * `<EVENT_HUB_KEY>` - Key of the Event Hub.
+  * `<EVENT_HUB_NAME>` - Name of the Event Hub.
 
 * Test the function.
 
