@@ -98,3 +98,4 @@ It handles an Event Grid and sends events to an Event Grid Topic.
 * Test the application.
 
   The events should be in the Event Grid.
+  
