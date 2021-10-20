@@ -246,7 +246,7 @@ It handles an Azure Function that responds to an Event Hub event (trigger) when 
   mvn azure-functions:run
   ```
 
-  The runtime will waiting for a Event Hub event (trigger).
+  The runtime will waiting for an Event Hub event (trigger).
 
   You must send an event to your Event Hub.
 
