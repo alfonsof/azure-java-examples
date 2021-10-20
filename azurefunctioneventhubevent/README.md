@@ -250,12 +250,12 @@ It handles an Azure Function that responds to an Event Hub event (trigger) when 
 
   You must send an event to your Event Hub.
 
-  You can use the Python application `sendereh.py` (Event Hub send event). You can get it following this link: [../azureeventhubsendevent/](../azureeventhubsendevent)
+  You can use the Python application `azureeventhubsendevent.jar` (Event Hub send event). You can get it following this link: [../azureeventhubsendevent/](../azureeventhubsendevent)
 
   Execute the python application:
 
   ```bash
-  python sendeh.py
+  java -jar azureeventhubsendevent.jar
   ```
 
   You should see the next message in the log:
