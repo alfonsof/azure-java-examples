@@ -45,9 +45,9 @@ public class SenderEG {
             System.out.println(e.toString());
         }
         // Define the Event Grid Topic key with your value
-        SenderEG.eventGridTopicKey = prop.getProperty("EventGridTopicKey");
+        eventGridTopicKey = prop.getProperty("EventGridTopicKey");
         // Define the Event Grid Topic endpoint with your value
-        SenderEG.eventGridTopicEndpoint = prop.getProperty("EventGridTopicEndpoint");
+        eventGridTopicEndpoint = prop.getProperty("EventGridTopicEndpoint");
     }
 
     /**
