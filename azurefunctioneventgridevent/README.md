@@ -99,43 +99,43 @@ It handles an Azure Function that responds to an Event Grid event (trigger) when
 
 * Configure the Azure Function.
 
-  You must configurate the `pom.xml` file for a proper creation of the Function App during the subsequent deployment process.
+   1. You must configurate the `pom.xml` file for a proper creation of the Function App during the subsequent deployment process.
 
-  Replace with the proper values in the `pom.xml` file:
+      Replace with the proper values in the `pom.xml` file:
 
-  * `<FUNCTION_APP>` - Function App name.
-  * `<RESOURCE_GROUP>` - Resource group name.
-  * `<APP_SERVICE_PLAN>` - App Service Plan name.
-  * `<REGION>`- Azure region name.
-  * `<os>linux</os>` - It is for a Linux operating system.
-  * `<javaVersion>8</javaVersion>` - It is for a runtime Java version 8.
-  * `<value>~3</value>` - It is for functions version 3.
+      * `<FUNCTION_APP>` - Function App name.
+      * `<RESOURCE_GROUP>` - Resource group name.
+      * `<APP_SERVICE_PLAN>` - App Service Plan name.
+      * `<REGION>`- Azure region name.
+      * `<os>linux</os>` - It is for a Linux operating system.
+      * `<javaVersion>8</javaVersion>` - It is for a runtime Java version 8.
+      * `<value>~3</value>` - It is for functions version 3.
 
-  Part of the `pom.xml` file:
+      Part of the `pom.xml` file:
 
-  ```bash
-  <configuration>
-    <!-- function app name -->
-    <appName><FUNCTION_APP></appName>
-    <!-- function app resource group -->
-    <resourceGroup><RESOURCE_GROUP></resourceGroup>
-    <!-- function app service plan name -->
-    <appServicePlanName><APP_SERVICE_PLAN></appServicePlanName>
-    <!-- function app region-->
-    <region><REGION></region>
-    <runtime>
-        <!-- runtime os, could be windows, linux or docker-->
-        <os>linux</os>
-        <javaVersion>8</javaVersion>
-    </runtime>
-    <appSettings>
-        <property>
-            <name>FUNCTIONS_EXTENSION_VERSION</name>
-            <value>~3</value>
-        </property>
-    </appSettings>
-  </configuration>
-  ```
+      ```bash
+      <configuration>
+        <!-- function app name -->
+        <appName><FUNCTION_APP></appName>
+        <!-- function app resource group -->
+        <resourceGroup><RESOURCE_GROUP></resourceGroup>
+        <!-- function app service plan name -->
+        <appServicePlanName><APP_SERVICE_PLAN></appServicePlanName>
+        <!-- function app region-->
+        <region><REGION></region>
+        <runtime>
+            <!-- runtime os, could be windows, linux or docker-->
+            <os>linux</os>
+            <javaVersion>8</javaVersion>
+        </runtime>
+        <appSettings>
+            <property>
+                <name>FUNCTIONS_EXTENSION_VERSION</name>
+                <value>~3</value>
+            </property>
+        </appSettings>
+      </configuration>
+      ```
 
 * Package the Azure Function.
 

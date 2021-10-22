@@ -121,7 +121,7 @@ It handles an Azure Function that responds to an Event Hub event (trigger) when 
 
 * Configure the Azure Function.
 
-   1. You must configurate the `pom.xml` file:
+  1. You must configurate the `pom.xml` file:
 
       You must configurate the `pom.xml` file for a proper creation of the Function App during the subsequent deployment process.
 
@@ -171,62 +171,31 @@ It handles an Azure Function that responds to an Event Hub event (trigger) when 
 
       The variable `name`, in the `Funtion.java` file, will hold the parameter that receives the event item.
 
-  3. You must configure the connection strings or secrets for trigger, input map to values in:
+  3. You must configure the connection string for trigger in the `local.settings.json` file when running locally.
   
-      * The `local.settings.json` file when running locally.
+      You must define the `MY_EVENT_HUB_IN` variable in the `local.settings.json` file:
 
-        You must define the `MY_EVENT_HUB_IN` variable in the `local.settings.json` file:
+      ```bash
+      "MY_EVENT_HUB_IN": "Endpoint=sb://<EVENT_HUB_NAMESPACE>.servicebus.windows.net/;SharedAccessKeyName=<EVENT_HUB_SAS_POLICY>;SharedAccessKey=<EVENT_HUB_KEY>;EntityPath=<EVENT_HUB_NAME>",
+      ```
 
-        ```bash
-        "MY_EVENT_HUB_IN": "Endpoint=sb://<EVENT_HUB_NAMESPACE>.servicebus.windows.net/;SharedAccessKeyName=<EVENT_HUB_SAS_POLICY>;SharedAccessKey=<EVENT_HUB_KEY>;EntityPath=<EVENT_HUB_NAME>",
-        ```
+      Replace with the proper:
 
-        Replace with the proper:
+      * `<EVENT_HUB_NAMESPACE>` - Event Hub namespace.
+      * `<EVENT_HUB_SAS_POLICY>` - Event Hub SAS Policy.
+      * `<EVENT_HUB_KEY>` - Key of the Event Hub.
+      * `<EVENT_HUB_NAME>` - Name of the Event Hub.
 
-        * `<EVENT_HUB_NAMESPACE>` - Event Hub namespace.
-        * `<EVENT_HUB_SAS_POLICY>` - Event Hub SAS Policy.
-        * `<EVENT_HUB_KEY>` - Key of the Event Hub.
-        * `<EVENT_HUB_NAME>` - Name of the Event Hub.
+      You must define the `AzureWebJobsStorage` variable in the `local.settings.json` file:
 
-        You must define the `AzureWebJobsStorage` variable in the `local.settings.json` file:
+      ```bash
+      "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=<STORAGE_ACCOUNT_NAME>;AccountKey=<STORAGE_ACCOUNT_KEY>;EndpointSuffix=core.windows.net",
+      ```
 
-        ```bash
-        "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=<STORAGE_ACCOUNT_NAME>;AccountKey=<STORAGE_ACCOUNT_KEY>;EndpointSuffix=core.windows.net",
-        ```
+      Replace with the proper:
 
-        Replace with the proper:
-
-        * `<STORAGE_ACCOUNT_NAME>` - Name of the Storage Account.
-        * `<STORAGE_ACCOUNT_KEY>` - Key of the Storage Account.
-
-      * The application settings for the Function App when running in Azure.
-
-        You can make that in two ways:
-
-        * Using the Azure console.
-
-          Go to your Function App.
-
-          Select: `Settings > Configuration > Application settings > + New application setting`
-
-          Set the setting `MY_EVENT_HUB_IN` name to:
-  
-          `Endpoint=sb://<EVENT_HUB_NAMESPACE>.servicebus.windows.net/;SharedAccessKeyName=<EVENT_HUB_SAS_POLICY>;SharedAccessKey=<EVENT_HUB_KEY>`
-
-          Select `Save`.
-
-        * Using the Azure CLI.
-
-          ```bash
-          az functionapp config appsettings set --name MyFunctionApp --resource-group MyResourceGroup --settings "MY_EVENT_HUB_IN=Endpoint=sb://<EVENT_HUB_NAMESPACE>.servicebus.windows.net/;SharedAccessKeyName=<EVENT_HUB_SAS_POLICY>;SharedAccessKey=<EVENT_HUB_KEY>;EntityPath=<EVENT_HUB_NAME>""
-          ```
-
-        In both cases, replace with the proper:
-
-        * `<EVENT_HUB_NAMESPACE>` - Event Hub namespace.
-        * `<EVENT_HUB_SAS_POLICY>` - Event Hub SAS Policy.
-        * `<EVENT_HUB_KEY>` - Key of the Event Hub.
-        * `<EVENT_HUB_NAME>` - Name of the Event Hub.
+      * `<STORAGE_ACCOUNT_NAME>` - Name of the Storage Account.
+      * `<STORAGE_ACCOUNT_KEY>` - Key of the Storage Account.
 
 * Package the Azure Function.
 
@@ -295,7 +264,7 @@ It handles an Azure Function that responds to an Event Hub event (trigger) when 
   [INFO] ------------------------------------------------------------------------
   ```
 
-* Configure in the Function App the connection string for trigger Event Hub.
+* Configure the connection string for trigger Event Hub in the Function App.
 
   You must configure the connection strings or secrets for trigger, input map to values in the application settings for the Function App when running in Azure.
 

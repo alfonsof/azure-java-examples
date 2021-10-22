@@ -91,43 +91,67 @@ It handles an Azure Function that responds to a Blob Storage event (trigger) whe
 
 * Configure the Azure Function.
 
-  You must configurate the `pom.xml` file for a proper creation of the Function App during the subsequent deployment process.
+  1. You must configurate the `pom.xml` file for a proper creation of the Function App during the subsequent deployment process.
 
-  Replace with the proper values in the `pom.xml` file:
+      Replace with the proper values in the `pom.xml` file:
 
-  * `<FUNCTION_APP>` - Function App name.
-  * `<RESOURCE_GROUP>` - Resource group name.
-  * `<APP_SERVICE_PLAN>` - App Service Plan name.
-  * `<REGION>`- Azure region name.
-  * `<os>linux</os>` - It is for a Linux operating system.
-  * `<javaVersion>8</javaVersion>` - It is for a runtime Java version 8.
-  * `<value>~3</value>` - It is for functions version 3.
+      * `<FUNCTION_APP>` - Function App name.
+      * `<RESOURCE_GROUP>` - Resource group name.
+      * `<APP_SERVICE_PLAN>` - App Service Plan name.
+      * `<REGION>`- Azure region name.
+      * `<os>linux</os>` - It is for a Linux operating system.
+      * `<javaVersion>8</javaVersion>` - It is for a runtime Java version 8.
+      * `<value>~3</value>` - It is for functions version 3.
 
-  Part of the `pom.xml` file:
+      Part of the `pom.xml` file:
 
-  ```bash
-  <configuration>
-    <!-- function app name -->
-    <appName><FUNCTION_APP></appName>
-    <!-- function app resource group -->
-    <resourceGroup><RESOURCE_GROUP></resourceGroup>
-    <!-- function app service plan name -->
-    <appServicePlanName><APP_SERVICE_PLAN></appServicePlanName>
-    <!-- function app region-->
-    <region><REGION></region>
-    <runtime>
-        <!-- runtime os, could be windows, linux or docker-->
-        <os>linux</os>
-        <javaVersion>8</javaVersion>
-    </runtime>
-    <appSettings>
-        <property>
-            <name>FUNCTIONS_EXTENSION_VERSION</name>
-            <value>~3</value>
-        </property>
-    </appSettings>
-  </configuration>
-  ```
+      ```bash
+      <configuration>
+        <!-- function app name -->
+        <appName><FUNCTION_APP></appName>
+        <!-- function app resource group -->
+        <resourceGroup><RESOURCE_GROUP></resourceGroup>
+        <!-- function app service plan name -->
+        <appServicePlanName><APP_SERVICE_PLAN></appServicePlanName>
+        <!-- function app region-->
+        <region><REGION></region>
+        <runtime>
+            <!-- runtime os, could be windows, linux or docker-->
+            <os>linux</os>
+            <javaVersion>8</javaVersion>
+        </runtime>
+        <appSettings>
+            <property>
+                <name>FUNCTIONS_EXTENSION_VERSION</name>
+                <value>~3</value>
+            </property>
+        </appSettings>
+      </configuration>
+      ```
+
+  2. You must configure the connection string for trigger in the `local.settings.json` file when running locally.
+  
+      You must define the `MY_STORAGE_IN` variable in the `local.settings.json` file:
+
+      ```bash
+      "MY_STORAGE_IN": "DefaultEndpointsProtocol=https;AccountName=<STORAGE_ACCOUNT_IN>;AccountKey=<ACCOUNT_KEY_IN>;EndpointSuffix=core.windows.net",
+      ```
+
+      Replace with the proper:
+
+      * `<STORAGE_ACCOUNT_IN>` - Storage Account name for input source.
+      * `<ACCOUNT_KEY_IN>` - Account Key of the Storage Account for input source.
+
+      You must define the `AzureWebJobsStorage` variable in the `local.settings.json` file:
+
+      ```bash
+      "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=<STORAGE_ACCOUNT_NAME>;AccountKey=<STORAGE_ACCOUNT_KEY>;EndpointSuffix=core.windows.net",
+      ```
+
+      Replace with the proper:
+
+      * `<STORAGE_ACCOUNT_NAME>` - Name of the Storage Account.
+      * `<STORAGE_ACCOUNT_KEY>` - Key of the Storage Account.
 
 * Package the Azure Function.
   
@@ -187,6 +211,32 @@ It handles an Azure Function that responds to a Blob Storage event (trigger) whe
   [INFO] Finished at: 2021-08-17T16:26:06+02:00
   [INFO] ------------------------------------------------------------------------
   ```
+
+* Configure the connection string for trigger Blob in the Function App.
+
+  You must configure the connection strings or secrets for trigger, input map to values in the application settings for the Function App when running in Azure.
+
+  You can make that in two ways:
+
+  * Using the Azure console.
+
+    Go to your Function App.
+    
+    Select: Settings > Configuration > Application settings
+
+    Set the setting `MY_STORAGE_IN` name to:
+    `DefaultEndpointsProtocol=https;AccountName=<STORAGE_ACCOUNT_IN>;AccountKey=<ACCOUNT_KEY_IN>;EndpointSuffix=core.windows.net`
+
+  * Using the Azure CLI
+
+    ```bash
+    az functionapp config appsettings set --name MyFunctionApp --resource-group MyResourceGroup --settings "MY_STORAGE_IN=DefaultEndpointsProtocol=https;AccountName=<STORAGE_ACCOUNT_IN>;AccountKey=<ACCOUNT_KEY_IN>;EndpointSuffix=core.windows.net"
+    ```
+
+  Replace with the proper:
+
+  * `<STORAGE_ACCOUNT_IN>`- Storage Account name for input source.
+  * `<ACCOUNT_KEY_IN>` - Account Key of the Storage Account for input source.
 
 * Test the function.
 
