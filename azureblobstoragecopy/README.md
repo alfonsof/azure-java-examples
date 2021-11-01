@@ -115,16 +115,16 @@ Copy a Blob from a Blob Storage container to another Blob Storage container.
 
 * Run the code.
 
-  You must provide 3 parameters:
+  You must provide 3 parameters, replace the value of:
 
-  * `<SOURCE_CONTAINER>`      = Source container name
-  * `<SOURCE_BLOB>`           = Source Blob name
-  * `<DESTINATION_CONTAINER>` = Destination container name
+  * `<SOURCE_CONTAINER>`      by source container name.
+  * `<SOURCE_BLOB>`           by source blob name.
+  * `<DESTINATION_CONTAINER>` by destination container name.
 
   Run application:
 
   ```bash
-  java -jar azureblobstoragecopy.jar source-container source-blob destination-container
+  java -jar azureblobstoragecopy.jar <SOURCE_CONTAINER> <SOURCE_BLOB> <DESTINATION_CONTAINER>
   ```
 
 * Test the application.

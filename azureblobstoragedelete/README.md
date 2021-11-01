@@ -121,14 +121,14 @@ Delete a Blob Storage container in an Azure storage account.
 
 * Run the code.
 
-  You must provide 1 parameter:
+  You must provide 1 parameter, replace the value of:
 
-  * `<CONTAINER_NAME>` = Name of the container
+  * `<CONTAINER_NAME>` by name of the container.
 
   Run application:
 
   ```bash
-  java -jar azureblobstoragedelete.jar container-example
+  java -jar azureblobstoragedelete.jar <CONTAINER_NAME>
   ```
 
 * Test the application.

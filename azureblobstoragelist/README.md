@@ -115,14 +115,14 @@ List the blobs in a Blob Storage container in an Azure storage account.
 
 * Run the code.
 
-  You must provide 1 parameter:
+  You must provide 1 parameter, replace the value of:
 
-  * `<CONTAINER_NAME>` = Name of the container
+  * `<CONTAINER_NAME>` by name of the container.
 
   Run application:
 
   ```bash
-  java -jar azureblobstoragelist.jar container-example
+  java -jar azureblobstoragelist.jar <CONTAINER_NAME>
   ```
 
 * Test the application.

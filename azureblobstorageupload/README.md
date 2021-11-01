@@ -115,16 +115,16 @@ Upload a local file to a Blob Storage container in an Azure storage account.
 
 * Run the code.
 
-  You must provide 3 parameters:
+  You must provide 3 parameters, replace the values of:
 
-  * `<CONTAINER_NAME>`  = Name of the container
-  * `<BLOB_NAME>`       = Blob name in the container
-  * `<LOCAL_FILE_NAME>` = Local file name
+  * `<CONTAINER_NAME>`  by name of the container.
+  * `<BLOB_NAME>`       by blob name in the container.
+  * `<LOCAL_FILE_NAME>` by local file name.
 
   Run application:
 
   ```bash
-  java -jar azureblobstorageupload.jar container-example blob-example local-file-example
+  java -jar azureblobstorageupload.jar <CONTAINER_NAME> <BLOB_NAME> <LOCAL_FILE_NAME>
   ```
 
 * Test the application.
