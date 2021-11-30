@@ -1,7 +1,6 @@
 /**
  * BlobStorageCreate is an example that handles Blob Storage containers on Microsoft Azure.
  * Create a new Blob Storage container.
- * The credentials are taken from AZURE_AUTH_LOCATION environment variable.
  * The connection string is taken from app.properties file.
  * You must use 1 parameter:
  * CONTAINER_NAME = Name of container
@@ -12,9 +11,10 @@ package example;
 import java.io.InputStream;
 import java.util.Properties;
 import java.io.IOException;
-import com.microsoft.azure.storage.CloudStorageAccount;
-import com.microsoft.azure.storage.blob.CloudBlobClient;
-import com.microsoft.azure.storage.blob.CloudBlobContainer;
+import com.azure.storage.blob.BlobServiceClient;
+import com.azure.storage.blob.BlobServiceClientBuilder;
+import com.azure.storage.blob.BlobContainerClient;
+
 
 public class BlobStorageCreate {
     public static void main(String[] args) {
@@ -30,30 +30,8 @@ public class BlobStorageCreate {
         // Load Configuration from a file and get the Storage Connection String
         String storageConnectionString = loadConfiguration();
 
-        try
-        {
-            System.out.println("Creating Blob Storage container ...");
-
-            // Retrieve storage account from connection-string.
-            CloudStorageAccount storageAccount = CloudStorageAccount.parse(storageConnectionString);
-
-            // Create the blob client.
-            CloudBlobClient blobClient = storageAccount.createCloudBlobClient();
-
-            // Get a reference to a container.
-            // The container name must be lower case
-            CloudBlobContainer container = blobClient.getContainerReference(containerName);
-
-            // Create the container if it does not exist.
-            container.createIfNotExists();
-
-            System.out.println("Created");
-        }
-        catch (Exception e)
-        {
-            // Output the stack trace.
-            e.printStackTrace();
-        }
+        // Create a new Blob Storage container
+        createContainer(storageConnectionString, containerName);
     }
 
     /**
@@ -70,18 +48,31 @@ public class BlobStorageCreate {
         } catch(IOException e) {
             System.out.println(e.toString());
         }
-        String defaultEndpointsProtocolStr = prop.getProperty("DefaultEndpointsProtocol");
-        String accountNameStr = prop.getProperty("AccountName");
-        String accountKeyStr = prop.getProperty("AccountKey");
-        String endpointSuffixStr = prop.getProperty("EndpointSuffix");
+        String storageAccountConnectionString = prop.getProperty("StorageAccountConnectionString");
 
-        // Define the connection-string with your values
-        String storageConnectionString =
-                "DefaultEndpointsProtocol=" + defaultEndpointsProtocolStr + ";" +
-                        "AccountName=" + accountNameStr + ";" +
-                        "AccountKey="+ accountKeyStr + ";" +
-                        "EndpointSuffix="+ endpointSuffixStr;
+        return storageAccountConnectionString;
+    }
 
-        return storageConnectionString;
+    /**
+     * Create a new Blob Storage container.
+     */
+    private static void createContainer(String storageConnectionString, String containerName) {
+        try
+        {
+            System.out.println("Creating Blob Storage container ...");
+
+            // Create a BlobServiceClient object which will be used to create a container client
+            BlobServiceClient blobServiceClient = new BlobServiceClientBuilder().connectionString(storageConnectionString).buildClient();
+
+            // Create the container and return a container client object
+            BlobContainerClient containerClient = blobServiceClient.createBlobContainer(containerName);
+
+            System.out.println("Created");
+        }
+        catch (Exception e)
+        {
+            // Output the stack trace.
+            e.printStackTrace();
+        }
     }
 }

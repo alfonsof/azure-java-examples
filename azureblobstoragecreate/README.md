@@ -11,10 +11,10 @@ Create a new Blob Storage container in an Azure storage account.
 * You must have an Azure storage account.
 
 * The code was written for:
- 
+
   *  Java 8
   *  Apache Maven 3
-  *  Azure SDKs for Java
+  *  Azure SDK for Java v12
 
 ## Using the code
 
@@ -100,16 +100,12 @@ Create a new Blob Storage container in an Azure storage account.
   The application configuration is stored in the `app.properties` properties file, located in the path `src/main/resources`. The file content is:
 
   ```bash
-  DefaultEndpointsProtocol=https
-  AccountName=<ACCOUNT_NAME>
-  AccountKey=<ACCOUNT_KEY>
-  EndpointSuffix=core.windows.net
+  StorageAccountConnectionString=<STORAGE_ACCOUNT_CONNECTION_STRING>
   ```
 
   You must edit the `app.properties` file and replace the values of:
   
-  * `<ACCOUNT_NAME>` by the account name of your storage account.
-  * `<ACCOUNT_KEY>` by the account key of your storage account.
+  * `<STORAGE_ACCOUNT_CONNECTION_STRING>` by the connection string of your storage account.
   
   The application uses this information for accessing your Azure storage account.
 
