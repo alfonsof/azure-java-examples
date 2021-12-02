@@ -35,7 +35,7 @@ public class BlobStorageCreate {
     }
 
     /**
-    * Load Configuration from a file and get the Storage Connection String
+    * Load Configuration from a file and get the Storage Connection String.
     */
     private static String loadConfiguration() {
 
