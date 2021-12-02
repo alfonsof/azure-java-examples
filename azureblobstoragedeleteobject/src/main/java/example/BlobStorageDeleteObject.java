@@ -1,7 +1,6 @@
 /**
  * BlobStorageDeleteObject is an example that handles Blob Storage containers on Microsoft Azure.
  * Delete a Blob in a Blob Storage container.
- * The credentials are taken from AZURE_AUTH_LOCATION environment variable.
  * The connection string is taken from app.properties file.
  * You must use 2 parameters:
  * CONTAINER_NAME = Name of container
@@ -13,10 +12,11 @@ package example;
 import java.io.InputStream;
 import java.util.Properties;
 import java.io.IOException;
-import com.microsoft.azure.storage.CloudStorageAccount;
-import com.microsoft.azure.storage.blob.CloudBlobClient;
-import com.microsoft.azure.storage.blob.CloudBlobContainer;
-import com.microsoft.azure.storage.blob.CloudBlockBlob;
+import com.azure.storage.blob.BlobServiceClient;
+import com.azure.storage.blob.BlobServiceClientBuilder;
+import com.azure.storage.blob.BlobContainerClient;
+import com.azure.storage.blob.BlobClient;
+
 
 public class BlobStorageDeleteObject {
     public static void main(String[] args) {
@@ -34,44 +34,13 @@ public class BlobStorageDeleteObject {
         // Load Configuration from a file and get the Storage Connection String
         String storageConnectionString = loadConfiguration();
 
-        try
-        {
-            System.out.println("Deleting Blob Storage container ...");
+        // Delete a Blob in a Blob Storage container
+        deleteBlob(storageConnectionString, containerName, blobName);
 
-            // Retrieve storage account from connection-string.
-            CloudStorageAccount storageAccount = CloudStorageAccount.parse(storageConnectionString);
-
-            // Create the blob client.
-            CloudBlobClient blobClient = storageAccount.createCloudBlobClient();
-
-            // Get a reference to a container.
-            // The container name must be lower case
-            CloudBlobContainer container = blobClient.getContainerReference(containerName);
-
-            if (container.exists()) {
-                // Get a reference to a blob.
-                CloudBlockBlob blob = container.getBlockBlobReference(blobName);
-                if (blob.exists()) {
-                    // Delete the blob if it exist.
-                    blob.deleteIfExists();
-                    System.out.println("Deleted");
-                } else {
-                    System.out.printf("Error: Blob \"%s\" does NOT exist.\n", blobName);
-                }
-            } else {
-                System.out.printf("Error: Blob Storage container \"%s\" does NOT exist.\n", containerName);
-            }
-
-        }
-        catch (Exception e)
-        {
-            // Output the stack trace.
-            e.printStackTrace();
-        }
     }
 
     /**
-     * Load Configuration from a file and get the Storage Connection String
+     * Load Configuration from a file and get the Storage Connection String.
      */
     private static String loadConfiguration() {
 
@@ -81,21 +50,44 @@ public class BlobStorageDeleteObject {
         try {
             InputStream is = ClassLoader.getSystemResourceAsStream("app.properties");
             prop.load(is);
-        } catch(IOException e) {
+        } catch (IOException e) {
             System.out.println(e.toString());
         }
-        String defaultEndpointsProtocolStr = prop.getProperty("DefaultEndpointsProtocol");
-        String accountNameStr = prop.getProperty("AccountName");
-        String accountKeyStr = prop.getProperty("AccountKey");
-        String endpointSuffixStr = prop.getProperty("EndpointSuffix");
+        String storageAccountConnectionString = prop.getProperty("StorageAccountConnectionString");
 
-        // Define the connection-string with your values
-        String storageConnectionString =
-                "DefaultEndpointsProtocol=" + defaultEndpointsProtocolStr + ";" +
-                        "AccountName=" + accountNameStr + ";" +
-                        "AccountKey="+ accountKeyStr + ";" +
-                        "EndpointSuffix="+ endpointSuffixStr;
+        return storageAccountConnectionString;
+    }
 
-        return storageConnectionString;
+    /**
+     * Delete a Blob in a Blob Storage container.
+     */
+    private static void deleteBlob(String storageConnectionString, String containerName, String blobName) {
+        try {
+            System.out.println("Deleting Blob Storage container ...");
+
+            // Create a BlobServiceClient object which will be used to create a container client
+            BlobServiceClient blobServiceClient = new BlobServiceClientBuilder().connectionString(storageConnectionString).buildClient();
+
+            // Get the container client object
+            BlobContainerClient containerClient = blobServiceClient.getBlobContainerClient(containerName);
+
+            if (containerClient.exists()) {
+                // Get the blob client object
+                BlobClient blobClient = containerClient.getBlobClient(blobName);
+                if (blobClient.exists()) {
+                    // Delete the blob
+                    blobClient.delete();
+                    System.out.println("Deleted");
+                } else {
+                    System.out.printf("Error: Blob \"%s\" does NOT exist.\n", blobName);
+                }
+            } else {
+                System.out.printf("Error: Blob Storage container \"%s\" does NOT exist.\n", containerName);
+            }
+
+        } catch (Exception e) {
+            // Output the stack trace.
+            e.printStackTrace();
+        }
     }
 }
