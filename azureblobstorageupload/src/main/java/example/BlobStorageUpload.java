@@ -1,7 +1,6 @@
 /**
  * BlobStorageUpload is an example that handles Blob Storage containers on Microsoft Azure.
  * Upload a local file to a Blob Storage container in an Azure storage account.
- * The credentials are taken from AZURE_AUTH_LOCATION environment variable.
  * The connection string is taken from app.properties file.
  * You must use 3 parameters:
  * CONTAINER_NAME   = Name of container
@@ -12,14 +11,14 @@
 package example;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.IOException;
 import java.util.Properties;
-import com.microsoft.azure.storage.CloudStorageAccount;
-import com.microsoft.azure.storage.blob.CloudBlobClient;
-import com.microsoft.azure.storage.blob.CloudBlobContainer;
-import com.microsoft.azure.storage.blob.CloudBlockBlob;
+import com.azure.storage.blob.BlobServiceClient;
+import com.azure.storage.blob.BlobServiceClientBuilder;
+import com.azure.storage.blob.BlobContainerClient;
+import com.azure.storage.blob.BlobClient;
+
 
 public class BlobStorageUpload {
     public static void main(String[] args) {
@@ -42,45 +41,13 @@ public class BlobStorageUpload {
         // Load Configuration from a file and get the Storage Connection String
         String storageConnectionString = loadConfiguration();
 
-        try
-        {
-            // Retrieve storage account from connection-string.
-            CloudStorageAccount storageAccount = CloudStorageAccount.parse(storageConnectionString);
-
-            // Create the blob client.
-            CloudBlobClient blobClient = storageAccount.createCloudBlobClient();
-
-            // Get a reference to a container.
-            // The container name must be lower case
-            CloudBlobContainer container = blobClient.getContainerReference(containerName);
-
-            if (container.exists()) {
-                File f = new File(localFileName);
-                if (f.exists()) {
-                    System.out.println("Uploading a local file to a Blob Storage container ...");
-                    // Get a reference to Blob.
-                    CloudBlockBlob blob = container.getBlockBlobReference(blobName);
-                    File sourceFile = new File(localFileName);
-                    // Upload local file
-                    blob.upload(new FileInputStream(sourceFile), sourceFile.length());
-                    System.out.println("Uploaded");
-                } else {
-                    System.out.printf("Error: Local file \"%s\" does NOT exist.", localFileName);
-                }
-            } else {
-                System.out.printf("Error: Blob Storage container \"%s\" does NOT exist.\n", containerName);
-            }
-        }
-        catch (Exception e)
-        {
-            // Output the stack trace.
-            e.printStackTrace();
-        }
+        // Upload a blob to a blob storage container.
+        uploadBlob(storageConnectionString, containerName, blobName, localFileName);
     }
 
     /**
-    * Load Configuration from a file and get the Storage Connection String
-    */
+     * Load Configuration from a file and get the Storage Connection String.
+     */
     private static String loadConfiguration() {
 
         // The connection string is taken from app.properties file
@@ -89,21 +56,45 @@ public class BlobStorageUpload {
         try {
             InputStream is = ClassLoader.getSystemResourceAsStream("app.properties");
             prop.load(is);
-        } catch(IOException e) {
+        } catch (IOException e) {
             System.out.println(e.toString());
         }
-        String defaultEndpointsProtocolStr = prop.getProperty("DefaultEndpointsProtocol");
-        String accountNameStr = prop.getProperty("AccountName");
-        String accountKeyStr = prop.getProperty("AccountKey");
-        String endpointSuffixStr = prop.getProperty("EndpointSuffix");
+        String storageAccountConnectionString = prop.getProperty("StorageAccountConnectionString");
 
-        // Define the connection-string with your values
-        String storageConnectionString =
-                "DefaultEndpointsProtocol=" + defaultEndpointsProtocolStr + ";" +
-                        "AccountName=" + accountNameStr + ";" +
-                        "AccountKey="+ accountKeyStr + ";" +
-                        "EndpointSuffix="+ endpointSuffixStr;
+        return storageAccountConnectionString;
+    }
 
-        return storageConnectionString;
+    /**
+     * Upload a blob to a blob storage container.
+     */
+    private static void uploadBlob(String storageConnectionString, String containerName,
+                                   String blobName, String localFileName) {
+
+        try {
+            // Create a BlobServiceClient object which will be used to create a container client
+            BlobServiceClient blobServiceClient = new BlobServiceClientBuilder().connectionString(storageConnectionString).buildClient();
+
+            // Get a reference to the container and return a container client object
+            BlobContainerClient containerClient = blobServiceClient.getBlobContainerClient(containerName);
+
+            if (containerClient.exists()) {
+                File f = new File(localFileName);
+                if (f.exists()) {
+                    System.out.println("Uploading a local file to a Blob Storage container ...");
+                    // Get a reference to a blob
+                    BlobClient blobClient = containerClient.getBlobClient(blobName);
+                    // Upload local file
+                    blobClient.uploadFromFile(localFileName);
+                    System.out.println("Uploaded");
+                } else {
+                    System.out.printf("Error: Local file \"%s\" does NOT exist.", localFileName);
+                }
+            } else {
+                System.out.printf("Error: Blob Storage container \"%s\" does NOT exist.\n", containerName);
+            }
+        } catch (Exception e) {
+            // Output the stack trace.
+            e.printStackTrace();
+        }
     }
 }
