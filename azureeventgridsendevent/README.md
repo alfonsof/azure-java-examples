@@ -11,7 +11,7 @@ It handles an Event Grid and sends events to an Event Grid Topic.
 * The code was written for:
   * Java 8
   * Apache Maven 3
-  * Azure SDKs for Java
+  * Azure SDK for Java: New Client Libraries (Azure Event Grid library v4)
 
 ## Using the code
 

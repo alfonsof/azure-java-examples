@@ -10,6 +10,7 @@ It handles an Azure Function that responds to an Event Grid event (trigger) when
 
 * The code was written for:
   * Java 8
+  * Apache Maven 3
 
 * To develop functions app with Java, you must have the following installed:
   * Java Developer Kit, version 8.

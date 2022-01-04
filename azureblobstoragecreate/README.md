@@ -11,10 +11,9 @@ Create a new Blob Storage container in an Azure storage account.
 * You must have an Azure storage account.
 
 * The code was written for:
-
-  *  Java 8
-  *  Apache Maven 3
-  *  Azure SDK for Java (v12 SDK)
+  * Java 8
+  * Apache Maven 3
+  * Azure SDK for Java: New Client Libraries (Azure Blob Storage library v12)
 
 ## Using the code
 

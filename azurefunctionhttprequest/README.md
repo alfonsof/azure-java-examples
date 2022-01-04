@@ -10,7 +10,8 @@ It handles an Azure Function that responds to an HTTP request.
 
 * The code was written for:
   * Java 8
-
+  * Apache Maven 3
+  
 * To develop functions app with Java, you must have the following installed:
   * Java Developer Kit, version 8.
   * Apache Maven, version 3.0 or above.
