@@ -18,6 +18,7 @@ import com.azure.messaging.eventgrid.EventGridPublisherClient;
 import com.azure.messaging.eventgrid.EventGridPublisherClientBuilder;
 import com.azure.messaging.eventgrid.EventGridEvent;
 
+
 public class SenderEG {
     private static String eventGridTopicKey = "";
     private static String eventGridTopicEndpoint = "";
@@ -41,7 +42,7 @@ public class SenderEG {
         try {
             InputStream is = ClassLoader.getSystemResourceAsStream("app.properties");
             prop.load(is);
-        } catch(IOException e) {
+        } catch (IOException e) {
             System.out.println(e.toString());
         }
         // Define the Event Grid Topic key with your value
