@@ -46,7 +46,7 @@ public class BlobStorageList {
         try {
             InputStream is = ClassLoader.getSystemResourceAsStream("app.properties");
             prop.load(is);
-        } catch(IOException e) {
+        } catch (IOException e) {
             System.out.println(e.toString());
         }
         String storageAccountConnectionString = prop.getProperty("StorageAccountConnectionString");
@@ -58,8 +58,7 @@ public class BlobStorageList {
      * List the Blobs in a Blob Storage container.
      */
     private static void listContainerBlobs(String storageConnectionString, String containerName) {
-        try
-        {
+        try {
             // Create a BlobServiceClient object which will be used to create a container client
             BlobServiceClient blobServiceClient = new BlobServiceClientBuilder().connectionString(storageConnectionString).buildClient();
 
@@ -76,9 +75,7 @@ public class BlobStorageList {
             } else {
                 System.out.printf("Error: Container \"%s\" does NOT exist.\n", containerName);
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             // Output the stack trace.
             e.printStackTrace();
         }
