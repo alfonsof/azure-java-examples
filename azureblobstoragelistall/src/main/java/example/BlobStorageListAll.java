@@ -35,7 +35,7 @@ public class BlobStorageListAll {
         try {
             InputStream is = ClassLoader.getSystemResourceAsStream("app.properties");
             prop.load(is);
-        } catch(IOException e) {
+        } catch (IOException e) {
             System.out.println(e.toString());
         }
         String storageAccountConnectionString = prop.getProperty("StorageAccountConnectionString");
@@ -48,8 +48,7 @@ public class BlobStorageListAll {
      */
     private static void listContainers(String storageConnectionString) {
 
-        try
-        {
+        try {
             // Create a BlobServiceClient object which will be used to create a container client
             BlobServiceClient blobServiceClient = new BlobServiceClientBuilder().connectionString(storageConnectionString).buildClient();
 
@@ -68,39 +67,9 @@ public class BlobStorageListAll {
                     System.out.println("  - Blob URI : " + blobItem.getName());
                 }
             });
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             // Output the stack trace.
             e.printStackTrace();
         }
-
-        /*
-                try
-        {
-            // Retrieve storage account from connection-string.
-            CloudStorageAccount storageAccount = CloudStorageAccount.parse(storageConnectionString);
-
-            // Create the blob client.
-            CloudBlobClient blobClient = storageAccount.createCloudBlobClient();
-
-            System.out.printf("List of Blob Storage containers:\n");
-
-            // Enumerate all containers and list all blobs
-            for (CloudBlobContainer container : blobClient.listContainers()) {
-                System.out.printf("- List of blobs in Blob Storage container \"%s\":\n", container.getName());
-                // List the blobs in the container.
-                for (ListBlobItem blobItem : container.listBlobs()) {
-                    System.out.println("  - Blob URI : " + blobItem.getUri());
-                }
-            }
-        }
-        catch (Exception e)
-        {
-            // Output the stack trace.
-            e.printStackTrace();
-        }
-
-         */
     }
 }
