@@ -16,6 +16,7 @@ import com.azure.messaging.eventhubs.EventHubClientBuilder;
 import com.azure.messaging.eventhubs.EventData;
 import com.azure.messaging.eventhubs.EventDataBatch;
 
+
 public class SenderEH {
     private static String eventHubConnectionString = "";
     private static String eventHubName = "";
@@ -39,7 +40,7 @@ public class SenderEH {
         try {
             InputStream is = ClassLoader.getSystemResourceAsStream("app.properties");
             prop.load(is);
-        } catch(IOException e) {
+        } catch (IOException e) {
             System.out.println(e.toString());
         }
         // Define the Event Hub connection-string with your values
