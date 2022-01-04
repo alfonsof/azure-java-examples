@@ -6,7 +6,6 @@
 
 package example;
 
-
 import java.util.function.Consumer;
 import java.io.InputStream;
 import java.util.Properties;
@@ -37,7 +36,7 @@ public class ReceiverEH {
     }
 
     /**
-     * Load Configuration from a file and get the Storage Connection String
+     * Load Configuration from a file and get the Storage Connection String.
      */
     private static void loadConfiguration() {
 
@@ -47,7 +46,7 @@ public class ReceiverEH {
         try {
             InputStream is = ClassLoader.getSystemResourceAsStream("app.properties");
             prop.load(is);
-        } catch(IOException e) {
+        } catch (IOException e) {
             System.out.println(e.toString());
         }
         // Define the Event Hub connection-string with your values
