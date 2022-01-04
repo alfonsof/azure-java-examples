@@ -15,6 +15,7 @@ import com.azure.storage.blob.BlobServiceClient;
 import com.azure.storage.blob.BlobServiceClientBuilder;
 import com.azure.storage.blob.BlobContainerClient;
 
+
 public class BlobStorageDelete {
     public static void main(String[] args) {
         if (args.length < 1) {
@@ -44,7 +45,7 @@ public class BlobStorageDelete {
         try {
             InputStream is = ClassLoader.getSystemResourceAsStream("app.properties");
             prop.load(is);
-        } catch(IOException e) {
+        } catch (IOException e) {
             System.out.println(e.toString());
         }
         String storageAccountConnectionString = prop.getProperty("StorageAccountConnectionString");
@@ -56,8 +57,7 @@ public class BlobStorageDelete {
      * Delete a Blob Storage container.
      */
     private static void deleteContainer(String storageConnectionString, String containerName) {
-        try
-        {
+        try {
             System.out.println("Deleting Blob Storage container ...");
 
             // Create a BlobServiceClient object which will be used to create a container client
@@ -73,9 +73,7 @@ public class BlobStorageDelete {
             } else {
                 System.out.printf("Error: Blob Storage container \"%s\" does NOT exist.\n", containerName);
             }
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             // Output the stack trace.
             e.printStackTrace();
         }
