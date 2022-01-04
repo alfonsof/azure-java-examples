@@ -45,7 +45,7 @@ public class BlobStorageCreate {
         try {
             InputStream is = ClassLoader.getSystemResourceAsStream("app.properties");
             prop.load(is);
-        } catch(IOException e) {
+        } catch (IOException e) {
             System.out.println(e.toString());
         }
         String storageAccountConnectionString = prop.getProperty("StorageAccountConnectionString");
@@ -57,8 +57,7 @@ public class BlobStorageCreate {
      * Create a new Blob Storage container.
      */
     private static void createContainer(String storageConnectionString, String containerName) {
-        try
-        {
+        try {
             System.out.println("Creating Blob Storage container ...");
 
             // Create a BlobServiceClient object which will be used to create a container client
@@ -68,9 +67,7 @@ public class BlobStorageCreate {
             BlobContainerClient containerClient = blobServiceClient.createBlobContainer(containerName);
 
             System.out.println("Created");
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             // Output the stack trace.
             e.printStackTrace();
         }
