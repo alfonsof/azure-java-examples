@@ -84,7 +84,6 @@ public class BlobStorageDeleteObject {
             } else {
                 System.out.printf("Error: Blob Storage container \"%s\" does NOT exist.\n", containerName);
             }
-
         } catch (Exception e) {
             // Output the stack trace.
             e.printStackTrace();
