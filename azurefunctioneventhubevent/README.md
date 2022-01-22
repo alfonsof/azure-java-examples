@@ -8,16 +8,16 @@ It handles an Azure Function that responds to an Event Hub event (trigger) when 
 
 * You must have a [Microsoft Azure](https://azure.microsoft.com/) subscription.
 
-* The code was written for:
-  * Java 8
-  * Apache Maven 3
-  
 * To develop functions app with Java, you must have the following installed:
   * Java Developer Kit, version 8.
   * Apache Maven, version 3.0 or above.
   * Azure CLI
   * Azure Functions Core Tools Version 3.x
 
+* The code was written for:
+  * Java 8
+  * Apache Maven 3
+  
 * Azure Functions Core Tools Version 3.x
 
   Azure Functions Core Tools lets you develop and test your functions on your local computer from the command prompt or terminal. Your local functions can connect to live Azure services, and you can debug your functions on your local computer using the full Functions runtime. You can even deploy a function app to your Azure subscription.
