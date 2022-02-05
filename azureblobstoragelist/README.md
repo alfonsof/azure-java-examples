@@ -16,7 +16,7 @@ List the blobs in a Blob Storage container in an Azure storage account.
 * The code was written for:
   * Java 8
   * Apache Maven 3
-  * Azure SDK for Java: New Client Libraries (Azure Blob Storage library v12)
+  * Azure SDK for Java: New Client Libraries (Azure Blob Storage library v12) (com.azure)
 
 ## Using the code
 

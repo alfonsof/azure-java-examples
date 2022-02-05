@@ -16,7 +16,7 @@ It handles an Event Hub and receive events from an event hub event stream.
 * The code was written for:
   * Java 8
   * Apache Maven 3
-  * Azure SDK for Java: New Client Libraries (Azure Event Hub library v5)
+  * Azure SDK for Java: New Client Libraries (Azure Event Hub library v5) (com.azure)
 
 ## Using the code
 

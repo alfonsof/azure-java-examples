@@ -16,7 +16,7 @@ Copy a Blob from a Blob Storage container to another Blob Storage container.
 * The code was written for:
   * Java 8
   * Apache Maven 3
-  * Azure SDK for Java: New Client Libraries (Azure Blob Storage library v12)
+  * Azure SDK for Java: New Client Libraries (Azure Blob Storage library v12) (com.azure)
 
 ## Using the code
 

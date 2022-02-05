@@ -17,7 +17,7 @@ It handles an Azure Function that responds to a Blob Storage event (trigger) and
 * The code was written for:
   * Java 8
   * Apache Maven 3
-  * Azure SDK for Java: New Client Libraries (Azure Blob Storage library v8)
+  * Azure SDK for Java: New Client Libraries (Azure Blob Storage library v8) (com.azure)
 
 * Azure Functions Core Tools Version 3.x
 
