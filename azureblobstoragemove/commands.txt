@@ -1,16 +1,25 @@
-In order to avoid an error message "Invalid signature file digest for Manifest main attributes", we have to remove from the jar file the files:
+Errors caused by signed jars in dependencies.
 
-META-INF/BCKEY.DSA
-META-INF/BCKEY.SF
-META-INF/MSFTSIG.RSA
-META-INF/MSFTSIG.SF
+We have to remove from the jar file the files:
 
-We can exclude these files with "maven-shade-plugin". 
+  META-INF/BCKEY.DSA
+  META-INF/BCKEY.SF
+  META-INF/MSFTSIG.RSA
+  META-INF/MSFTSIG.SF
+
+In order to avoid error messages like:
+  
+  "Invalid signature file digest for Manifest main attributes"
+  "Error: Could not find or load main class Main example.AzureVM"
+
+We can exclude these files with "maven-shade-plugin" in "pom.xml" file.
 
 Working with IntelliJ this functionality does not work.
 
 So, we remove the files with one of these commands after the jar file is created:
 
-$ zip -d out/artifacts/azureblobstoragemove_jar/azureblobstoragemove.jar META-INF/*.RSA META-INF/*.DSA META-INF/*.SF
+- MacOS / Linux:
+  $ zip -d out/artifacts/azureblobstoragemove_jar/azureblobstoragemove.jar "META-INF/*.RSA" "META-INF/*.DSA" "META-INF/*.SF"
 
-$ 7z d -tzip out/artifacts/azureblobstoragemove_jar/azureblobstoragemove.jar META-INF/*.RSA META-INF/*.DSA META-INF/*.SF
+- 7-zip tool:
+  $ 7z d -tzip out/artifacts/azureblobstoragemove_jar/azureblobstoragemove.jar META-INF/*.RSA META-INF/*.DSA META-INF/*.SF
