@@ -27,7 +27,7 @@ public class AzureVM {
                     AzureVMHelper.listVMs();
                     break;
                 case 2:  // Create VM
-                    AzureVMHelper.createVM();
+                    AzureVMHelper.runVM();
                     break;
                 case 3:  // List VM
                     AzureVMHelper.listVM();
@@ -65,7 +65,7 @@ public class AzureVM {
         System.out.println("4 = Start Virtual Machine");
         System.out.println("5 = Stop Virtual Machine");
         System.out.println("6 = Restart Virtual Machine");
-        System.out.println("7 = Delete/Deallocate Virtual Machine");
+        System.out.println("7 = Deallocate/Delete Virtual Machine");
         System.out.println("Enter an option?");
     }
     
