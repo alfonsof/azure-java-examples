@@ -78,7 +78,7 @@ This folder contains a Java application example that handles Virtual Machines on
   * 4 = Start Virtual Machine
   * 5 = Stop Virtual Machine
   * 6 = Restart Virtual Machine
-  * 7 = Delete/Deallocate Virtual Machine
+  * 7 = Deallocate/Delete Virtual Machine
 
 * Test the application.
 
