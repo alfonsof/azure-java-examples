@@ -10,7 +10,7 @@ We have to remove from the jar file the files:
 In order to avoid error messages like:
   
   "Invalid signature file digest for Manifest main attributes"
-  "Error: Could not find or load main class Main example.AzureVM"
+  "Error: Could not find or load main class Main example.BlobStorageList"
 
 We can exclude these files with "maven-shade-plugin" in "pom.xml" file.
 
