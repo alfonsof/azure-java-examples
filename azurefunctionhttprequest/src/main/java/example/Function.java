@@ -20,7 +20,7 @@ public class Function {
      * 1. curl -d "HTTP Body" {your host}/api/HttpExample
      * 2. curl "{your host}/api/HttpExample?name=HTTP%20Query"
      */
-    @FunctionName("HttpExample")
+    @FunctionName("HttpRequest")
     public HttpResponseMessage run(
             @HttpTrigger(
                 name = "req",
@@ -28,7 +28,7 @@ public class Function {
                 authLevel = AuthorizationLevel.ANONYMOUS)
                 HttpRequestMessage<Optional<String>> request,
             final ExecutionContext context) {
-        context.getLogger().info("Java HTTP trigger processed a request.");
+        context.getLogger().info("Java HTTP trigger function processed a request.");
 
         // Parse query parameter
         final String query = request.getQueryParameters().get("name");
