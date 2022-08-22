@@ -15,8 +15,6 @@ Azure offers two different kinds of API:
 
 You must have a [Microsoft Azure](https://azure.microsoft.com/) subscription.
 
-You must have an Azure storage account for the Azure Blob Storage examples.
-
 The code for the samples is contained in individual folders on this repository.
 
 For instructions on running the code, please consult the README in each folder.
