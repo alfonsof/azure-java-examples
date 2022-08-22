@@ -148,13 +148,13 @@ It handles an Azure Function that responds to an HTTP request.
   The runtime will output a URL for any HTTP functions, which can be copied and run in your browser's address bar.
 
   ```bash
-  http://localhost:7071/api/HttpExample
+  http://localhost:7071/api/HttpRequest
   ```
 
   And you have to add the parameter `name`:
 
   ```bash
-  http://localhost:7071/api/HttpExample?name=Peter
+  http://localhost:7071/api/HttpRequest?name=Peter
   ```
 
   To stop debugging, use Ctrl-C in the terminal.
@@ -179,12 +179,12 @@ It handles an Azure Function that responds to an HTTP request.
 
   ```bash
   [INFO] HTTP Trigger Urls:
-  [INFO]   datahub01httpeampleafb/HttpExample : https://functionapphttpexample.azurewebsites.net/api/httpexample
+  [INFO]   azurefunctionhttprequest-20210729190303201/HttpRequest : https://azurefunctionhttprequest-20210729190303201.azurewebsites.net/api/httprequest
   [INFO] ------------------------------------------------------------------------
   [INFO] BUILD SUCCESS
   [INFO] ------------------------------------------------------------------------
   [INFO] Total time:  03:12 min
-  [INFO] Finished at: 2021-08-05T16:31:04+02:00
+  [INFO] Finished at: 2022-08-05T16:31:04+02:00
   [INFO] ------------------------------------------------------------------------
   ```
 
@@ -194,7 +194,7 @@ It handles an Azure Function that responds to an HTTP request.
   
   * The function URL: URL field
 
-  * The function key: Functions menu > select function `HttpExample` > Function keys > `default` value
+  * The function key: Functions menu > select function `HttpRequest` > Function keys > `default` value
 
   Run the function:
 
@@ -207,12 +207,12 @@ It handles an Azure Function that responds to an HTTP request.
   To run the code, you need to use the parementer `name`:
 
   ```bash
-  https://<FUNCTION_APP>.azurewebsites.net/api/httpexample?name=PETER
+  https://<FUNCTION_APP>.azurewebsites.net/api/HttpRequest?name=PETER
   ```
 
 * Test the function.
 
-  Go to the URL: `https://<FUNCTION_APP>.azurewebsites.net/api/httpexample?name=PETER` using a browser.
+  Go to the URL: `https://<FUNCTION_APP>.azurewebsites.net/api/HttpRequest?name=PETER` using a browser.
 
   You should see the response:
 
