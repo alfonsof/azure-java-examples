@@ -39,3 +39,5 @@ obj/
 
 # Mac
 .DS_Store
+._*
+.bash_profile
