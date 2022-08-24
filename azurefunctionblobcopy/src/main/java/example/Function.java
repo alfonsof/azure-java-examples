@@ -1,63 +1,53 @@
 package example;
 
-import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import com.microsoft.azure.functions.ExecutionContext;
-import com.microsoft.azure.functions.annotation.AuthorizationLevel;
+import com.microsoft.azure.functions.OutputBinding;
 import com.microsoft.azure.functions.annotation.FunctionName;
-import com.microsoft.azure.functions.annotation.StorageAccount;
 import com.microsoft.azure.functions.annotation.BlobTrigger;
 import com.microsoft.azure.functions.annotation.BindingName;
-import com.microsoft.azure.storage.StorageException;
-import com.microsoft.azure.storage.CloudStorageAccount;
-import com.microsoft.azure.storage.blob.CloudBlobClient;
-import com.microsoft.azure.storage.blob.CloudBlobContainer;
-import com.microsoft.azure.storage.blob.CloudBlob;
-import com.microsoft.azure.storage.blob.BlobContainerPublicAccessType;
+import com.microsoft.azure.functions.annotation.BlobOutput;
 
 
 /**
- * Azure Functions with Azure Blob trigger.
+ * Azure Functions with Azure Blob trigger and copy a Blob.
  */
 public class Function {
     /**
-     * This function will be invoked when a new or updated blob is detected at the specified path. The blob contents are provided as input to this function.
+     * This function will be invoked when a new or updated blob is detected at the specified path.
+     * The blob contents are provided as input to this function.
      * Copy the blob when it appears in a blob storage to another blob storage.
      */
-    @FunctionName("Function")
-    @StorageAccount("<connection>")
-    public void run(
-        @BlobTrigger(connection = "MY_STORAGE_IN", name = "content", path = "samples-workitems/{name}", dataType = "binary") byte[] content,
-        @BindingName("name") String name,
-        final ExecutionContext context
-    ) {
-        context.getLogger().info("Java Blob trigger function processed a blob.\nBlob Name: samples-workitems/" + name + "\nBlob Size: " + content.length + " Bytes");
-        
-        CloudStorageAccount destinationStorageAccount;
-        CloudBlobClient destinationBlobClient = null;
-        CloudBlobContainer destinationContainer = null;
-        CloudBlob destinationBlob = null;
-        
-        // Get Storage Connection String of the destination storage account 
-        String destinationStorageConnectionString = System.getenv("MY_STORAGE_OUT");
 
-        try {
-            // Parse the connection string and create a blob client to interact with destination Blob storage
-            destinationStorageAccount = CloudStorageAccount.parse(destinationStorageConnectionString);
-            destinationBlobClient = destinationStorageAccount.createCloudBlobClient();
-            destinationContainer = destinationBlobClient.getContainerReference("samples-workitems");
-            destinationBlob = destinationContainer.getBlockBlobReference(name);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    @FunctionName("BlobCopy")
+    public void run(
+        @BlobTrigger(
+            connection = "MY_STORAGE_IN",
+            name = "inputblob",
+            path = "samples-workitems/{blobName}",
+            dataType = "binary")
+            byte[] content,
+        @BindingName("blobName") String blobName,
+        @BlobOutput(
+            connection = "MY_STORAGE_OUT",
+            name = "outputblob",
+            path = "samples-workitems/{blobName}")
+            OutputBinding<String> outputData,
+        final ExecutionContext context) {
+
+        context.getLogger().info("Java Blob trigger function processed a blob.\nBlob Name: "
+                                + "samples-workitems/" + blobName + "\nBlob Size: " + content.length + " Bytes");
 
         try {
             // Copy the blob
-            context.getLogger().info("Copying blob: " + name);
-            destinationBlob.uploadFromByteArray(content, 0, content.length);
+            context.getLogger().info("Copying blob: " + blobName);
+            
+            // Save blob to outputData
+            outputData.setValue(new String(content, StandardCharsets.UTF_8));
+
             context.getLogger().info("Copied");
-        } catch (StorageException se) {
-            se.printStackTrace();
-        } catch (IOException e) {
+        } catch (Exception e) {
+            // Output the stack trace.
             e.printStackTrace();
         }
     }
