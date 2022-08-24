@@ -12,15 +12,21 @@ import com.microsoft.azure.functions.annotation.BindingName;
  */
 public class Function {
     /**
-     * This function will be invoked when a new or updated blob is detected at the specified path. The blob contents are provided as input to this function.
+     * This function will be invoked when a new or updated blob is detected at the specified path.
+     * The blob contents are provided as input to this function.
      */
-    @FunctionName("Function")
-    @StorageAccount("<connection>")
+    @FunctionName("BlobEvent")
     public void run(
-        @BlobTrigger(connection = "MY_STORAGE_IN", name = "content", path = "samples-workitems/{name}", dataType = "binary") byte[] content,
-        @BindingName("name") String name,
-        final ExecutionContext context
-    ) {
-        context.getLogger().info("Java Blob trigger function processed a blob.\nBlob Name: samples-workitems/" + name + "\nBlob Size: " + content.length + " Bytes");
+            @BlobTrigger(
+                connection = "MY_STORAGE_IN",
+                name = "inputblob",
+                path = "samples-workitems/{blobName}",
+                dataType = "binary")
+                byte[] content,
+            @BindingName("blobName") String blobName,
+            final ExecutionContext context) {
+
+        context.getLogger().info("Java Blob trigger function processed a blob.\nBlob Name: samples-workitems/"
+                                    + blobName + "\nBlob Size: " + content.length + " Bytes");
     }
 }
