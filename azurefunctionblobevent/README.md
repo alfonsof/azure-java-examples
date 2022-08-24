@@ -132,17 +132,6 @@ It handles an Azure Function that responds to a Blob Storage event (trigger) whe
 
   2. You must configure the connection string for trigger in the `local.settings.json` file when running locally.
   
-      You must define the `MY_STORAGE_IN` variable in the `local.settings.json` file:
-
-      ```bash
-      "MY_STORAGE_IN": "DefaultEndpointsProtocol=https;AccountName=<STORAGE_ACCOUNT_IN>;AccountKey=<ACCOUNT_KEY_IN>;EndpointSuffix=core.windows.net",
-      ```
-
-      Replace with the proper:
-
-      * `<STORAGE_ACCOUNT_IN>` - Storage Account name for input source.
-      * `<ACCOUNT_KEY_IN>` - Account Key of the Storage Account for input source.
-
       You must define the `AzureWebJobsStorage` variable in the `local.settings.json` file:
 
       ```bash
@@ -153,6 +142,17 @@ It handles an Azure Function that responds to a Blob Storage event (trigger) whe
 
       * `<STORAGE_ACCOUNT_NAME>` - Name of the Storage Account.
       * `<STORAGE_ACCOUNT_KEY>` - Key of the Storage Account.
+
+      You must define the `MY_STORAGE_IN` variable in the `local.settings.json` file:
+
+      ```bash
+      "MY_STORAGE_IN": "DefaultEndpointsProtocol=https;AccountName=<STORAGE_ACCOUNT_IN>;AccountKey=<ACCOUNT_KEY_IN>;EndpointSuffix=core.windows.net",
+      ```
+
+      Replace with the proper:
+
+      * `<STORAGE_ACCOUNT_IN>` - Storage Account name for input source.
+      * `<ACCOUNT_KEY_IN>` - Account Key of the Storage Account for input source.
 
 * Package the Azure Function.
   
@@ -209,7 +209,7 @@ It handles an Azure Function that responds to a Blob Storage event (trigger) whe
   [INFO] BUILD SUCCESS
   [INFO] ------------------------------------------------------------------------
   [INFO] Total time:  42.197 s
-  [INFO] Finished at: 2021-08-17T16:26:06+02:00
+  [INFO] Finished at: 2022-08-22T12:26:06+02:00
   [INFO] ------------------------------------------------------------------------
   ```
 
@@ -222,7 +222,7 @@ It handles an Azure Function that responds to a Blob Storage event (trigger) whe
   * Using the Azure console.
 
     Go to your Function App.
-    
+
     Select: Settings > Configuration > Application settings
 
     Set the setting `MY_STORAGE_IN` name to:
