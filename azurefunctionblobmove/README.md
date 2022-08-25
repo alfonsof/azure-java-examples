@@ -17,7 +17,7 @@ It handles an Azure Function that responds to a Blob Storage event (trigger) and
 * The code was written for:
   * Java 8
   * Apache Maven 3
-  * Azure SDK for Java: New Client Libraries (Azure Blob Storage library v8) (com.azure)
+  * Azure SDK for Java: New Client Libraries (Azure Blob Storage library v12) (com.azure)
 
 * Azure Functions Core Tools Version 3.x
 
@@ -71,7 +71,7 @@ It handles an Azure Function that responds to a Blob Storage event (trigger) and
   Maven asks you for values needed to finish generating the project on deployment. Provide the following values when prompted:
   * groupId: com.alfonsof.azureexamples
   * artifactId: azurefunctionblobmove
-  * version: 1.0.0
+  * version: 2.0.0
   * package: example
   * trigger: BlobTrigger
 
@@ -139,6 +139,17 @@ It handles an Azure Function that responds to a Blob Storage event (trigger) and
 
   2. You must configure the connection string for trigger in the `local.settings.json` file when running locally.
   
+      You must define the `AzureWebJobsStorage` variable in the `local.settings.json` file:
+
+      ```bash
+      "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=<STORAGE_ACCOUNT_NAME>;AccountKey=<STORAGE_ACCOUNT_KEY>;EndpointSuffix=core.windows.net",
+      ```
+
+      Replace with the proper:
+
+      * `<STORAGE_ACCOUNT_NAME>` - Name of the Storage Account.
+      * `<STORAGE_ACCOUNT_KEY>` - Key of the Storage Account.
+
       You must define the `MY_STORAGE_IN` and `MY_STORAGE_OUT` variables in the `local.settings.json` file:
 
       ```bash
@@ -152,19 +163,6 @@ It handles an Azure Function that responds to a Blob Storage event (trigger) and
       * `<ACCOUNT_KEY_IN>` - Account Key of the Storage Account for input source.
       * `<STORAGE_ACCOUNT_OUT>`- Storage Account name for output target.
       * `<ACCOUNT_KEY_OUT>` - Account Key of the Storage Account for output target.
-
-      You must define the `AzureWebJobsStorage` variable in the `local.settings.json` file:
-
-      ```bash
-      "AzureWebJobsStorage": "DefaultEndpointsProtocol=https;AccountName=<STORAGE_ACCOUNT_NAME>;AccountKey=<STORAGE_ACCOUNT_KEY>;EndpointSuffix=core.windows.net",
-      ```
-
-      Replace with the proper:
-
-      * `<STORAGE_ACCOUNT_NAME>` - Name of the Storage Account.
-      * `<STORAGE_ACCOUNT_KEY>` - Key of the Storage Account.
-
-    * The application settings for the Function App when running in Azure.
 
 * Package the function
 
@@ -225,7 +223,7 @@ It handles an Azure Function that responds to a Blob Storage event (trigger) and
   [INFO] BUILD SUCCESS
   [INFO] ------------------------------------------------------------------------
   [INFO] Total time:  42.197 s
-  [INFO] Finished at: 2021-08-17T16:26:06+02:00
+  [INFO] Finished at: 2022-08-25T17:26:06+02:00
   [INFO] ------------------------------------------------------------------------
   ```
 
@@ -238,7 +236,7 @@ It handles an Azure Function that responds to a Blob Storage event (trigger) and
   * Using the Azure console.
 
     Go to your Function App.
-    
+
     Select: Settings > Configuration > Application settings
 
     Set the setting `MY_STORAGE_IN` name to:
