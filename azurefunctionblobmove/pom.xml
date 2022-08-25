@@ -4,7 +4,7 @@
 
     <groupId>com.alfonsof.azureexamples</groupId>
     <artifactId>azurefunctionblobmove</artifactId>
-    <version>1.0.0</version>
+    <version>2.0.0</version>
     <packaging>jar</packaging>
 
     <name>Azure Java Functions</name>
@@ -12,10 +12,22 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java.version>1.8</java.version>
-        <azure.functions.maven.plugin.version>1.13.0</azure.functions.maven.plugin.version>
-        <azure.functions.java.library.version>1.4.2</azure.functions.java.library.version>
-        <functionAppName>azurefunctionblobevent-20210817130855496</functionAppName>
+        <azure.functions.maven.plugin.version>1.18.0</azure.functions.maven.plugin.version>
+        <azure.functions.java.library.version>2.0.1</azure.functions.java.library.version>
+        <functionAppName>azurefunctionblobmove-20210817130855496</functionAppName>
     </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.azure</groupId>
+                <artifactId>azure-sdk-bom</artifactId>
+                <version>1.2.4</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <dependency>
@@ -25,9 +37,8 @@
         </dependency>
 
         <dependency>
-            <groupId>com.microsoft.azure</groupId>
-            <artifactId>azure-storage</artifactId>
-            <version>8.6.6</version>
+            <groupId>com.azure</groupId>
+            <artifactId>azure-storage-blob</artifactId>
         </dependency>
 
         <!-- Test -->
@@ -87,6 +98,10 @@
                         <property>
                             <name>FUNCTIONS_EXTENSION_VERSION</name>
                             <value>~3</value>
+                        </property>
+                        <property>
+                            <name>FUNCTIONS_WORKER_JAVA_LOAD_APP_LIBS</name>
+                            <value>1</value>
                         </property>
                     </appSettings>
                 </configuration>
