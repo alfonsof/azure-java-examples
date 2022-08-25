@@ -21,19 +21,19 @@ public class Function {
 
     @FunctionName("BlobCopy")
     public void run(
-        @BlobTrigger(
-            connection = "MY_STORAGE_IN",
-            name = "inputblob",
-            path = "samples-workitems/{blobName}",
-            dataType = "binary")
-            byte[] content,
-        @BindingName("blobName") String blobName,
-        @BlobOutput(
-            connection = "MY_STORAGE_OUT",
-            name = "outputblob",
-            path = "samples-workitems/{blobName}")
-            OutputBinding<String> outputData,
-        final ExecutionContext context) {
+            @BlobTrigger(
+                connection = "MY_STORAGE_IN",
+                name = "inputblob",
+                path = "samples-workitems/{blobName}",
+                dataType = "binary")
+                byte[] content,
+            @BindingName("blobName") String blobName,
+            @BlobOutput(
+                connection = "MY_STORAGE_OUT",
+                name = "outputblob",
+                path = "samples-workitems/{blobName}")
+                OutputBinding<String> outputData,
+            final ExecutionContext context) {
 
         context.getLogger().info("Java Blob trigger function processed a blob.\nBlob Name: "
                                 + "samples-workitems/" + blobName + "\nBlob Size: " + content.length + " Bytes");
